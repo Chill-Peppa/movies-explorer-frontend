@@ -1,0 +1,35 @@
+.not-found__back {
+  margin-top: 184px;
+  color: #4285f4;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+.not-found__back:hover {
+  opacity: 0.6;
+}
+
+.not-found__back:active {
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .not-found__back {
+    margin-bottom: 222px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .not-found__back {
+    margin-top: 284px;
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 30px;
+  }
+}

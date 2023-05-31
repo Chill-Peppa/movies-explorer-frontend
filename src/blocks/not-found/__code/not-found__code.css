@@ -1,0 +1,22 @@
+.not-found__code {
+  margin-top: 279px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169px;
+}
+
+@media screen and (max-width: 768px) {
+  .not-found__code {
+    margin-top: 408px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .not-found__code {
+    margin-top: 350px;
+    font-size: 80px;
+    line-height: 97px;
+  }
+}

@@ -3,65 +3,133 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/fonts.css');
 
-.page {
-  box-sizing: border-box;
-  color: #fff;
-  background-color: #202020;
-  font-family: Inter, Arial, sans-serif;
-  margin: 0 auto;
-  max-width: 100vw;
-  min-height: 100vh;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+@import url('./blocks/page/page.css');
+@import url('./blocks/not-found/not-found.css');
+@import url('./blocks/not-found/__code/not-found__code.css');
+@import url('./blocks/not-found/__error/not-found__error.css');
+@import url('./blocks/not-found/__back/not-found__back.css');
 
-.not-found {
+.sign {
   display: flex;
-  max-width: 1280px;
-  margin: 0 auto;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
 }
 
-.not-found__code {
-  margin-top: 279px;
-  font-family: 'Inter';
+.sign__zone {
+  text-align: left;
+  max-width: 396px;
+  width: 100%;
+}
+
+.sign__logo {
+  max-width: 38px;
+  max-height: 38px;
+  margin: 70px 0 0 0;
+}
+
+.sign__header {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+  margin: 40px 0 40px 0;
+}
+
+.sign__input-header {
+  margin: 0 0 5px 0;
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
-  font-size: 140px;
-  line-height: 169px;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8b8b8b;
 }
 
-.not-found__error {
-  margin-top: 38px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-}
-
-.not-found__back {
-  margin-top: 184px;
-  color: #4285f4;
-  font-family: 'Inter';
+.sign__form-input {
+  outline: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: none;
+  border-bottom: 1px solid #424242;
+  padding: 0 0 10px 0;
+  background-color: transparent;
+  max-width: 396px;
+  width: 100%;
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  color: #ffffff;
+}
+
+.sign__form-input:focus {
+  border-bottom: 1px solid #4285f4;
+}
+
+.sign__input-error {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin: 6px 0 4px 0;
+  opacity: 0;
+}
+
+.sign__input-error_visible {
+  opacity: 1;
+}
+
+.sign__button {
+  max-width: 396px;
+  width: 100%;
+  /*padding: 15px 0 15px 0;*/
+  height: 45px;
+  margin: 130px 0 16px 0;
+  cursor: pointer;
+  background-color: #4285f4;
+  border-radius: 3px;
+  color: #fff;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+}
+
+.sign__button_login {
+  margin: 221px 0 16px 0;
+}
+
+.sign__register {
+  margin: 0 0 70px 0;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #8b8b8b;
+}
+
+.sign__enter {
+  color: #4285f4;
   cursor: pointer;
   opacity: 1;
-  transition: 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
-.not-found__back:hover {
-  opacity: 0.6;
+.sign__enter:hover {
+  opacity: 0.5;
 }
 
-.not-found__back:active {
+.sign__enter:active {
   opacity: 1;
 }
+
+/* ----- для входа ------- */
