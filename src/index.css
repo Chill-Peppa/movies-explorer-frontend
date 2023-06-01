@@ -1,13 +1,6 @@
-/* Тут будет подключение всех стилей */
-
+/* Тут будет подключение normalize и шрифтов */
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/fonts.css');
-
-@import url('./blocks/page/page.css');
-@import url('./blocks/not-found/not-found.css');
-@import url('./blocks/not-found/__code/not-found__code.css');
-@import url('./blocks/not-found/__error/not-found__error.css');
-@import url('./blocks/not-found/__back/not-found__back.css');
 
 .sign {
   display: flex;
