@@ -1,0 +1,129 @@
+.about-me {
+  padding: 0 70px 0 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me__header {
+  margin: 110px 0 0 0;
+  padding-bottom: 23px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  border-bottom: 1px solid #dadada;
+}
+
+.about-me__container {
+  display: flex;
+  justify-content: space-between;
+  margin: 66px 0 100px 0;
+}
+
+.about-me__name {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.about-me__info {
+  margin: 16px 0 20px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+  mix-blend-mode: normal;
+}
+
+.about-me__description {
+  max-width: 600px;
+  margin: 0 0 99px 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+  mix-blend-mode: normal;
+}
+
+.about-me__github {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+.about-me__github:hover {
+  opacity: 0.7;
+}
+
+.about-me__student {
+  max-width: 255px;
+  max-height: 307px;
+}
+
+.about-me__portfolio {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #a0a0a0;
+  mix-blend-mode: normal;
+  margin: 0 0 50px 0;
+}
+
+.about-me__portfolio-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.about-me__portfolio-item {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 19px;
+}
+
+.about-me__portfolio-item:nth-child(3) {
+  border: none;
+  padding-bottom: 0;
+  margin-bottom: 125px;
+}
+
+.about-me__portfolio-link {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.about-me__arrow {
+  width: 27px;
+  height: 27px;
+  opacity: 1;
+  transition: all ease-in-out 0.4s;
+}
+
+.about-me__arrow:hover {
+  opacity: 0.6;
+}
