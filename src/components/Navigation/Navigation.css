@@ -1,0 +1,45 @@
+.header__navigation {
+  display: flex;
+  gap: 50px;
+}
+
+.header__navigation-left {
+  display: flex;
+  gap: 20px;
+}
+
+.header__navigation-btn {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: right;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.header__navigation-right {
+  cursor: pointer;
+  background: #202020;
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 40px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: #ffffff;
+  padding: 3px 3px 3px 11px;
+}
+
+.header__profile {
+  background-color: #313131;
+  border-radius: 50%;
+  padding: 7px 7px;
+}

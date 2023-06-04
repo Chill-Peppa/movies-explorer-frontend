@@ -9,6 +9,7 @@
   margin: 0;
   max-width: 364px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .movies-card__img {

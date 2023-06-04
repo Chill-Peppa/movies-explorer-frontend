@@ -9,7 +9,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 37px 24px;
-  justify-content: center;
 }
 
 .movies-card-list__button {

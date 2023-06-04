@@ -1,15 +1,50 @@
 .header {
-  padding: 0 70px 0 70px;
+  padding: 18px 70px 18px 70px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header_type_blue {
   background-color: #073042;
 }
 
+.header_type_black {
+  background: #202020;
+}
+
 .header__logo {
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
   max-width: 38px;
   max-height: 38px;
+}
+
+.header__btns {
+  display: flex;
+  gap: 30px;
+}
+
+.header__button-left {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  color: #ffffff;
+  padding: 8px 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header__button-right {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  background: #3ddc84;
+  border-radius: 3px;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
 }
