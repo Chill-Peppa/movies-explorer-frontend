@@ -5,14 +5,16 @@ import './App.css';
 //import Register from './Register';
 // import Login from '../Login/Login';
 //import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
+//import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 function App() {
   return (
     <div className="App">
       <div className="page">
         {/*<Main />*/}
-        <Movies />
+        {/*<Movies />*/}
+        <SavedMovies />
       </div>
     </div>
   );
