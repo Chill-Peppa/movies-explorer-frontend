@@ -5,7 +5,7 @@ import mainPic from '../../images/main-picture.png';
 function Promo() {
   return (
     <section className="promo">
-      <div className="promo_right">
+      <div className="promo__right">
         <h1 className="promo__header">
           Учебный проект студента факультета Веб&#8209;разработки.
         </h1>

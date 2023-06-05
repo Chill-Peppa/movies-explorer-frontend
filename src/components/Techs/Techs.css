@@ -5,8 +5,20 @@
   background-color: #272727;
 }
 
+@media screen and (max-width: 769px) {
+  .techs {
+    padding: 0 50px 0 50px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .techs {
+    padding: 0 18px 0 18px;
+  }
+}
+
 .techs__header {
-  margin: 110px 0 0 0;
+  margin: 100px 0 0 0;
   padding-bottom: 23px;
   font-family: inherit;
   font-style: normal;
@@ -16,6 +28,21 @@
   letter-spacing: -0.04em;
   color: #ffffff;
   border-bottom: 1px solid #dadada;
+}
+
+@media screen and (max-width: 769px) {
+  .techs__header {
+    margin: 71px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .techs__header {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 30px 0 0 0;
+    padding-bottom: 28px;
+  }
 }
 
 .techs__main-zone {
@@ -36,6 +63,20 @@
   color: #ffffff;
 }
 
+@media screen and (max-width: 769px) {
+  .techs__title {
+    margin: 80px 0 22px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .techs__title {
+    margin: 60px 0 24px 0;
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
 .techs__description {
   max-width: 460px;
   text-align: center;
@@ -49,12 +90,49 @@
   margin: 0 0 100px 0;
 }
 
+@media screen and (max-width: 769px) {
+  .techs__description {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 82px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .techs__description {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 50px 0;
+  }
+}
+
 .techs__list {
   list-style: none;
   display: flex;
   column-gap: 10px;
   padding: 0;
   margin: 0 0 100px 0;
+}
+
+@media screen and (max-width: 769px) {
+  .techs__list {
+    margin: 0 0 90px 0;
+  }
+}
+
+@media screen and (max-width: 741px) {
+  .techs__list {
+    flex-wrap: wrap;
+    gap: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .techs__list {
+    flex-wrap: wrap;
+    gap: 10px 10px;
+    max-width: 180px;
+  }
 }
 
 .techs__item {
@@ -69,4 +147,12 @@
   letter-spacing: -0.04em;
   color: #ffffff;
   padding: 21px 0;
+}
+
+@media screen and (max-width: 769px) {
+  .techs__item {
+    font-size: 12px;
+    line-height: 15px;
+    width: 84px;
+  }
 }
