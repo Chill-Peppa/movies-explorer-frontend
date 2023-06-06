@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from '../images/logo.svg';
+import './Register.css';
+import logo from '../../images/logo.svg';
 
 function Register(props) {
   return (
@@ -43,9 +44,7 @@ function Register(props) {
             maxLength="40"
             required
           />
-          <span className="sign__input-error sign__input-error_visible">
-            Что-то пошло не так...
-          </span>
+          <span className="sign__input-error"></span>
         </form>
       </div>
       <button className="sign__button" type="submit">

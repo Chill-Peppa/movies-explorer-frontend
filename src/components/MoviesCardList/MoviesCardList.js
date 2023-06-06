@@ -2,6 +2,7 @@ import React from 'react';
 import './MoviesCardList.css';
 import { moviesArray } from '../../utils/movies.js';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import MoviesCardButton from '../MoviesCardButton/MoviesCardButton';
 
 function MoviesCardList() {
   return (
@@ -11,9 +12,7 @@ function MoviesCardList() {
           return <MoviesCard movie={item} key={item.movieId} />;
         })}
       </ul>
-      <button className="movies-card-list__button" type="button">
-        Ещё
-      </button>
+      <MoviesCardButton />
     </section>
   );
 }
