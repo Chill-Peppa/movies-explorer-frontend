@@ -9,7 +9,9 @@ function Register(props) {
         <img className="sign__logo" alt="Лого" src={logo} />
         <h2 className="sign__header">Добро пожаловать!</h2>
         <form className="sign__form" noValidate>
-          <p className="sign__input-header">Имя</p>
+          <label htmlFor="name" className="sign__input-header">
+            Имя
+          </label>
           <input
             className="sign__form-input"
             name="name"
@@ -21,7 +23,9 @@ function Register(props) {
             required
           />
           <span className="sign__input-error">Какая-то ошибка...</span>
-          <p className="sign__input-header">E-mail</p>
+          <label htmlFor="email" className="sign__input-header">
+            E-mail
+          </label>
           <input
             className="sign__form-input"
             name="email"
@@ -33,7 +37,9 @@ function Register(props) {
             required
           />
           <span className="sign__input-error">Какая-то ошибка...</span>
-          <p className="sign__input-header">Пароль</p>
+          <label htmlFor="password" className="sign__input-header">
+            Пароль
+          </label>
           <input
             className="sign__form-input"
             name="password"
@@ -44,7 +50,7 @@ function Register(props) {
             maxLength="40"
             required
           />
-          <span className="sign__input-error"></span>
+          <span className="sign__input-error">Ошибка...</span>
         </form>
       </div>
       <button className="sign__button" type="submit">

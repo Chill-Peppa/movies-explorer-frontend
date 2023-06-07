@@ -10,10 +10,30 @@
   width: 100%;
 }
 
+@media screen and (max-width: 451px) {
+  .sign__zone {
+    text-align: center;
+    max-width: 260px;
+    width: 100%;
+  }
+}
+
 .sign__logo {
   max-width: 38px;
   max-height: 38px;
   margin: 70px 0 0 0;
+}
+
+@media screen and (max-width: 769px) {
+  .sign__logo {
+    margin: 232px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 451px) {
+  .sign__logo {
+    margin: 56px 0 9px 0;
+  }
 }
 
 .sign__header {
@@ -23,7 +43,19 @@
   font-size: 24px;
   line-height: 29px;
   color: #fff;
-  margin: 37px 0 40px 0;
+  margin: 37px 0 36px 0;
+}
+
+@media screen and (max-width: 451px) {
+  .sign__header {
+    margin: 37px 0 75px 0;
+  }
+}
+
+@media screen and (max-width: 451px) {
+  .sign__form {
+    text-align: left;
+  }
 }
 
 .sign__input-header {
@@ -34,6 +66,7 @@
   font-size: 10px;
   line-height: 12px;
   color: #8b8b8b;
+  width: 396px;
 }
 
 .sign__form-input {
@@ -42,7 +75,7 @@
   white-space: nowrap;
   border: none;
   border-bottom: 1px solid #424242;
-  padding: 0 0 2px 0;
+  padding: 0 0 10px 0;
   background-color: transparent;
   max-width: 396px;
   width: 100%;
@@ -52,6 +85,12 @@
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
+}
+
+@media screen and (max-width: 451px) {
+  .sign__form-input {
+    padding: 0 0 12px 0;
+  }
 }
 
 .sign__form-input:focus {
@@ -66,7 +105,9 @@
   line-height: 12px;
   color: #ee3465;
   margin: 6px 0 4px 0;
-  opacity: 0;
+  display: block;
+  max-width: 396px;
+  /*  opacity: 0;*/
 }
 
 .sign__button {
@@ -87,8 +128,21 @@
   border: none;
 }
 
+@media screen and (max-width: 451px) {
+  .sign__button {
+    max-width: 260px;
+    width: 100%;
+  }
+}
+
 .sign__button_login {
   margin: 201px 0 16px 0;
+}
+
+@media screen and (max-width: 451px) {
+  .sign__button {
+    margin: 286px 0 15px 0;
+  }
 }
 
 .sign__register {
@@ -100,6 +154,13 @@
   line-height: 17px;
   text-align: center;
   color: #8b8b8b;
+}
+
+@media screen and (max-width: 451px) {
+  .sign__register {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
 
 .sign__enter {

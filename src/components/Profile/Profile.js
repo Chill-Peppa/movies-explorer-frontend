@@ -1,40 +1,43 @@
 import React from 'react';
+import Header from '../Header/Header';
 
 function Profile() {
   return (
-    <section className="profile">
-      <div className="profile__zone">
-        <h2 className="sign__header">Рады видеть!</h2>
-        <form className="sign__form" noValidate>
-          <p className=""></p>
+    <>
+      <Header />
+      <section className="profile">
+        <h2 className="profile__header">Привет, Виталий!</h2>
+        <form className="profile__form" noValidate>
+          <label htmlFor="name" className="profile__label"></label>
           <input
-            className="sign__form-input"
+            className="profile__input"
+            name="name"
+            id="name"
+            autoComplete="off"
+            type="name"
+            minLength="2"
+            maxLength="70"
+            required
+          />
+          <span className="profile__input-error">Какая-то ошибка...</span>
+          <label htmlFor="email" className="profile__label"></label>
+          <input
+            className="profile__input"
             name="email"
             id="email"
             autoComplete="off"
             type="email"
             minLength="2"
-            maxLength="70"
-            required
-          />
-          <p className=""></p>
-          <input
-            className="sign__form-input"
-            name="password"
-            id="password"
-            autoComplete="off"
-            type="password"
-            minLength="2"
             maxLength="40"
             required
           />
+          <span className="profile__input-error">Какая-то ошибка...</span>
         </form>
-      </div>
-      <p className="sign__register">
-        Ещё не зарегистрированы?
-        <span className="sign__enter"> Регистрация</span>
-      </p>
-    </section>
+
+        <p className="profile__register">Редактировать</p>
+        <p className="profile__exit">Выйти из аккаунта</p>
+      </section>
+    </>
   );
 }
 
