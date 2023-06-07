@@ -14,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <div className="page">
-        <Login />
         <Register />
         <Profile />
         {/*<Main />*/}

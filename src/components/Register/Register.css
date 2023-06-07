@@ -115,7 +115,7 @@
   width: 100%;
   /*padding: 15px 0 15px 0;*/
   height: 45px;
-  margin: 151px 0 16px 0;
+  margin: 130px 0 16px 0;
   cursor: pointer;
   background-color: #4285f4;
   border-radius: 3px;
@@ -132,6 +132,7 @@
   .sign__button {
     max-width: 260px;
     width: 100%;
+    margin: 215px 0 16px 0;
   }
 }
 
@@ -140,7 +141,7 @@
 }
 
 @media screen and (max-width: 451px) {
-  .sign__button {
+  .sign__button_login {
     margin: 286px 0 15px 0;
   }
 }
