@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header';
+import './Profile.css';
 
 function Profile() {
   return (
@@ -8,29 +9,40 @@ function Profile() {
       <section className="profile">
         <h2 className="profile__header">Привет, Виталий!</h2>
         <form className="profile__form" noValidate>
-          <label htmlFor="name" className="profile__label"></label>
-          <input
-            className="profile__input"
-            name="name"
-            id="name"
-            autoComplete="off"
-            type="name"
-            minLength="2"
-            maxLength="70"
-            required
-          />
+          <div className="profile__input-zone">
+            <label htmlFor="name" className="profile__label">
+              Имя
+            </label>
+            <input
+              className="profile__input"
+              name="name"
+              id="name"
+              autoComplete="off"
+              type="name"
+              minLength="2"
+              maxLength="70"
+              defaultValue={'Временное имя' || ''}
+              required
+            />
+          </div>
           <span className="profile__input-error">Какая-то ошибка...</span>
-          <label htmlFor="email" className="profile__label"></label>
-          <input
-            className="profile__input"
-            name="email"
-            id="email"
-            autoComplete="off"
-            type="email"
-            minLength="2"
-            maxLength="40"
-            required
-          />
+
+          <div className="profile__input-zone">
+            <label htmlFor="email" className="profile__label">
+              E-mail
+            </label>
+            <input
+              className="profile__input"
+              name="email"
+              id="email"
+              autoComplete="off"
+              type="email"
+              minLength="2"
+              maxLength="40"
+              defaultValue={'Временная почта' || ''}
+              required
+            />
+          </div>
           <span className="profile__input-error">Какая-то ошибка...</span>
         </form>
 

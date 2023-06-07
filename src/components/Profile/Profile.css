@@ -1,0 +1,122 @@
+.profile {
+  max-width: 410px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 450px) {
+  .profile {
+    max-width: 260px;
+  }
+}
+
+.profile__header {
+  text-align: center;
+  margin: 74px 0 123px 0;
+  font-size: 24px;
+  line-height: 29px;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 769px) {
+  .profile__header {
+    margin: 236px 0 96px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile__header {
+    margin: 70px 0 80px 0;
+  }
+}
+
+.profile__form {
+  max-width: 410px;
+}
+
+.profile__input-zone {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid #424242;
+}
+
+.profile__input-zone:last-of-type {
+  border-bottom: none;
+  padding: 0;
+}
+
+.profile__label {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ffffff;
+  display: block;
+}
+
+.profile__input {
+  outline: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: none;
+  background-color: transparent;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: right;
+  color: #ffffff;
+}
+
+.profile__input-error {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin: 4px 0 2px 0;
+  padding: 0;
+  display: block;
+  max-width: 396px;
+  opacity: 0;
+}
+
+.profile__register {
+  padding: 0;
+  margin: 200px 0 16px 0;
+  font-size: 13px;
+  line-height: 16px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 769px) {
+  .profile__register {
+    margin: 190px 0 16px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile__register {
+    margin: 357px 0 16px 0;
+  }
+}
+
+.profile__exit {
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ee3465;
+  padding: 0 0 70px 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+@media screen and (max-width: 450px) {
+  .profile__exit {
+    padding: 0 0 43px 0;
+  }
+}
