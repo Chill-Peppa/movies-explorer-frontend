@@ -3,7 +3,11 @@ import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
+/*import { useLocation } from 'react-router-dom';*/
+
 function Header() {
+  /*const { pathname } = useLocation();*/
+
   /*const [loggedIn, setLoggedIn] = React.useState(false);
 
   const handleLogin = () => {
@@ -30,6 +34,13 @@ function Header() {
       />
       <Navigation /> </header>
   */
+
+  /*
+          <header
+      className={`header ${
+        pathname === '/' ? 'header_type_black' : 'header_type_blue'
+      }`}>
+      */
 
   return (
     <header className="header header_type_black">

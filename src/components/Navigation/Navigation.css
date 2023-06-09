@@ -1,11 +1,14 @@
 .header__navigation {
   display: flex;
   gap: 50px;
+  padding: 0;
+  list-style: none;
 }
 
 .header__navigation-left {
   display: flex;
   gap: 20px;
+  padding: 0;
 }
 
 .header__navigation-btn {
@@ -17,9 +20,12 @@
   color: #ffffff;
   padding: 0;
   margin: 0;
-  background-color: transparent;
   cursor: pointer;
-  border: none;
+  list-style: none;
+}
+
+.header__navigation-btn_burger {
+  display: none;
 }
 
 .header__navigation-right {
@@ -44,16 +50,19 @@
   padding: 7px 7px;
 }
 
-/*.header__burger {
-  border: 1px solid red;
-  width: 29px;
-  height: 29px;
+.header__burger {
+  display: none;
+  cursor: pointer;
+  margin-right: 8px;
+  margin-top: 1px;
 }
 
 .header__burger-span {
+  display: block;
   width: 28px;
   height: 3px;
   background: #ffffff;
-  margin-bottom: 7px;
+  margin: 7px auto;
+  /*-webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;*/
 }
-*/

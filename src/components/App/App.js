@@ -6,7 +6,7 @@ import './App.css';
 //import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 //import Main from '../Main/Main';
-//import Movies from '../Movies/Movies';
+import Movies from '../Movies/Movies';
 //import SavedMovies from '../SavedMovies/SavedMovies';
 // import Profile from '../Profile/Profile';
 
@@ -16,7 +16,7 @@ function App() {
       <div className="page">
         <Profile />
         {/*<Main />*/}
-        {/*<Movies />*/}
+        <Movies />
         {/*<SavedMovies />*/}
       </div>
     </div>
