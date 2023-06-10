@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Header from '../Header/Header';
 import './Profile.css';
 
@@ -47,7 +49,9 @@ function Profile() {
         </form>
 
         <p className="profile__register">Редактировать</p>
-        <p className="profile__exit">Выйти из аккаунта</p>
+        <Link to="/signin" className="profile__exit">
+          Выйти из аккаунта
+        </Link>
       </section>
     </>
   );

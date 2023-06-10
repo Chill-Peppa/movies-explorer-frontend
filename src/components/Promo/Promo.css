@@ -123,6 +123,11 @@
   }
 }
 
+.promo__link {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .promo__picture {
   margin-top: 75px;
   max-width: 310px;

@@ -1,22 +1,35 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './BurgerLayer.css';
 import profile from '../../images/profile.svg';
 
-function BurgerLayer() {
+function BurgerLayer({ onCloseDrawer }) {
   return (
-    <div className="burger-layer">
+    <div className={`burger-layer`}>
       <div className="burger-layer__container">
-        <button type="button" className="burger-layer__close"></button>
+        <button
+          type="button"
+          className="burger-layer__close"
+          onClick={onCloseDrawer}></button>
         <nav className="burger-layer__menu">
           <ul className="burger-layer__list">
-            <li className="burger-layer__point">Главная</li>
-            <li className="burger-layer__point">Фильмы</li>
-            <li className="burger-layer__point">Сохранённые фильмы</li>
+            <Link to="/" className="burger-layer__point">
+              Главная
+            </Link>
+            <Link to="/movies" className="burger-layer__point">
+              Фильмы
+            </Link>
+            <Link to="/saved-movies" className="burger-layer__point">
+              Сохранённые фильмы
+            </Link>
           </ul>
         </nav>
 
         <button className="burger-layer__button" type="button">
-          <span className="burger-layer__span">Аккаунт</span>
+          <Link to="/profile" className="burger-layer__span">
+            Аккаунт
+          </Link>
           <img
             className="burger-layer__profile"
             alt="Лого аккаунта"

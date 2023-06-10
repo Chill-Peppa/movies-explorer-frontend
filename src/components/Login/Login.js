@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import '../Register/Register.css';
 import logo from '../../images/logo.svg';
 
@@ -43,8 +45,10 @@ function Login(props) {
         Войти
       </button>
       <p className="sign__register">
-        Ещё не зарегистрированы?
-        <span className="sign__enter"> Регистрация</span>
+        Ещё не зарегистрированы?{' '}
+        <Link to="/signup" className="sign__enter">
+          Регистрация
+        </Link>
       </p>
     </section>
   );

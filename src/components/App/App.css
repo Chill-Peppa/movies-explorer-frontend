@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .page {
   box-sizing: border-box;
   color: #fff;
