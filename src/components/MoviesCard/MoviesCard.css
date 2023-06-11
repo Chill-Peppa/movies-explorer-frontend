@@ -19,8 +19,10 @@
 }
 
 .movies-card__img {
+  border-radius: 9px 9px 0 0;
   width: 100%;
   object-fit: cover;
+  background-color: #222222;
 }
 
 .movies-card__about {
@@ -54,8 +56,15 @@
 }
 
 .movies-card__icon {
-  margin: 0 8px;
   cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  background: url('../../images/unlike.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  width: 14px;
 }
 
 @media screen and (max-width: 450px) {

@@ -18,7 +18,7 @@
 
 .search-form__input-zone {
   position: relative;
-  margin: 60px 0 42px 0;
+  margin: 49px 0 42px 0;
 }
 
 @media screen and (max-width: 769px) {
@@ -50,6 +50,11 @@
   color: #8b8b8b;
 }
 
+.search-form__input:focus {
+  border-color: #2f2f2f;
+  box-shadow: 0 0 10px #2f2f2f;
+}
+
 .search-form__button {
   position: absolute;
   top: 6px;
@@ -61,6 +66,12 @@
   border: none;
   z-index: 1;
   cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.search-form__button:hover {
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.9);
+  border: rgba(0, 0, 0, 0.8);
 }
 
 .search-form__icon {

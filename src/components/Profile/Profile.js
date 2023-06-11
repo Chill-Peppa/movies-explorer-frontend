@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../Header/Header';
 import './Profile.css';
 
 function Profile() {
   return (
     <>
-      <Header />
       <section className="profile">
         <h2 className="profile__header">Привет, Виталий!</h2>
         <form className="profile__form" noValidate>

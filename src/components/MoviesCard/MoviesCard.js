@@ -1,7 +1,5 @@
 import React from 'react';
 import './MoviesCard.css';
-import unlike from '../../images/unlike.svg';
-//import like from '../../images/like.svg'
 import { timeConverter } from '../../utils/timeConverter';
 
 function MoviesCard({ movie }) {
@@ -14,7 +12,7 @@ function MoviesCard({ movie }) {
       />
       <div className="movies-card__about">
         <h2 className="movies-card__header">{movie.nameRU}</h2>
-        <img className="movies-card__icon" alt="Лайк" src={unlike} />
+        <button type="button" className="movies-card__icon" alt="Лайк" />
       </div>
       <span className="movies-card__duration">
         {timeConverter(movie.duration)}
