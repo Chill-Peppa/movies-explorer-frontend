@@ -1,0 +1,258 @@
+.about {
+  padding: 0 70px 0 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 769px) {
+  .about {
+    padding: 0 50px 0 50px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about {
+    padding: 0 18px 0 18px;
+  }
+}
+
+.about__header {
+  margin: 110px 0 0 0;
+  padding-bottom: 23px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  border-bottom: 1px solid #dadada;
+}
+
+@media screen and (max-width: 769px) {
+  .about__header {
+    margin: 91px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about__header {
+    margin: 70px 0 0 0;
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 28px;
+  }
+}
+
+.about__container {
+  margin: 70px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 769px) {
+  .about__container {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about__container {
+    flex-direction: column;
+    gap: 56px;
+    margin: 60px 0 0 0;
+  }
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 26px;
+}
+
+@media screen and (max-width: 769px) {
+  .about__text {
+    row-gap: 23px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about__text {
+    row-gap: 16px;
+  }
+}
+
+.about__text-header {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0;
+}
+
+@media screen and (max-width: 450px) {
+  .about__text-header {
+    row-gap: 23px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.about__text-description {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  max-width: 550px;
+  margin: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .about__text-description {
+    gap: 30px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about__text-description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.about__weeks {
+  margin-top: 110px;
+  display: flex;
+}
+
+@media screen and (max-width: 769px) {
+  .about__weeks {
+    margin-top: 93px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about__weeks {
+    margin-top: 60px;
+  }
+}
+
+.about__weeks-one {
+  width: 20%;
+  padding: 9px 0;
+  background-color: #3ddc84;
+  display: flex;
+  justify-content: center;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #000000;
+}
+
+@media screen and (max-width: 769px) {
+  .about__weeks-one {
+    width: 21%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about__weeks-one {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 11px 0;
+    width: 43%;
+  }
+}
+
+.about__weeks-four {
+  width: 80%;
+  padding: 9px 0;
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 769px) {
+  .about__weeks-four {
+    width: 79%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about__weeks-four {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+
+.about__stack {
+  margin: 14px 0 110px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 450px) {
+  .about__stack {
+    margin: 10px 0 110px 0;
+  }
+}
+
+.about__stack-back {
+  width: 20%;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #8b8b8b;
+}
+
+@media screen and (max-width: 450px) {
+  .about__stack-back {
+    font-size: 11px;
+    line-height: 13px;
+    width: 43%;
+  }
+}
+
+.about__stack-front {
+  width: 80%;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #8b8b8b;
+}
+
+@media screen and (max-width: 450px) {
+  .about__stack-front {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

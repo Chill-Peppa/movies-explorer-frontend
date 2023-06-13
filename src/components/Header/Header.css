@@ -1,0 +1,93 @@
+.header {
+  padding: 18px 70px 18px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 769px) {
+  .header {
+    padding: 18px 30px 18px 30px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .header {
+    padding: 18px 14px 18px 14px;
+  }
+}
+
+.header_type_blue {
+  background-color: #073042;
+}
+
+.header_type_black {
+  background: #202020;
+}
+
+.header__logo-link {
+  cursor: pointer;
+}
+
+.header__logo {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+  max-width: 38px;
+  max-height: 38px;
+}
+
+.header__logo_black {
+  filter: none;
+  transform: translateY(-5px);
+}
+
+.header__btns {
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 450px) {
+  .header__btns {
+    gap: 15px;
+  }
+}
+
+.header__button-left {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+  .header__button-left {
+    font-size: 10px;
+    font-size: 10px;
+  }
+}
+
+.header__button-right {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  background: #3ddc84;
+  border-radius: 3px;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 450px) {
+  .header__button-right {
+    padding: 5px 12px;
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,36 @@
+.movies__button-zone {
+  padding: 0 70px 0 70px;
+}
+
+@media screen and (max-width: 900px) {
+  .movies__button-zone {
+    padding: 0 30px 0 30px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .movies__button-zone {
+    padding: 0 10px 0 10px;
+  }
+}
+
+.movies__button {
+  width: 100%;
+  background: #2f2f2f;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #ffffff;
+  padding: 11px 0 11px 0;
+  opacity: 1;
+  transition: all 0.6s ease-in-out;
+}
+
+.movies__button:hover {
+  opacity: 0.8;
+}

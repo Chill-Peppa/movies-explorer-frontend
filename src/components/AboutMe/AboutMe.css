@@ -1,0 +1,182 @@
+.about-me {
+  padding: 0 70px 0 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me {
+    padding: 0 50px 0 50px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about-me {
+    padding: 0 14px 0 14px;
+  }
+}
+
+.about-me__header {
+  margin: 113px 0 0 0;
+  padding-bottom: 23px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  border-bottom: 1px solid #dadada;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me__header {
+    margin: 90px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about-me__header {
+    margin: 50px 0 0 0;
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 28px;
+  }
+}
+
+.about-me__container {
+  display: flex;
+  justify-content: space-between;
+  margin: 66px 0 90px 0;
+}
+
+@media screen and (max-width: 601px) {
+  .about-me__container {
+    flex-direction: column;
+    align-items: center;
+    margin: 61px 0 90px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about-me__container {
+    flex-direction: column;
+    align-items: normal;
+    margin: 61px 0 70px 0;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .about-me__text {
+    order: 2;
+  }
+}
+
+.about-me__name {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about-me__name {
+    font-size: 30px;
+    line-height: 36px;
+    margin-top: 40px;
+  }
+}
+.about-me__info {
+  margin: 17px 0 27px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+  mix-blend-mode: normal;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me__info {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 17px 0 20px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about-me__info {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.about-me__description {
+  max-width: 599px;
+  margin: 0 0 99px 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  mix-blend-mode: normal;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me__description {
+    font-size: 12px;
+    line-height: 18px;
+    max-width: 362px;
+    margin: 0 0 88px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about-me__description {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 40px 0;
+  }
+}
+
+.about-me__github {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+.about-me__github:hover {
+  opacity: 0.7;
+}
+
+.about-me__student {
+  max-width: 270px;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me__student {
+    max-width: 255px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .about-me__student {
+    max-width: 100%;
+  }
+}
