@@ -39,17 +39,17 @@ function Login(props) {
             required
           />
           <span className="sign__input-error">Ошибка....</span>
+          <button className="sign__button sign__button_login" type="submit">
+            Войти
+          </button>
+          <p className="sign__register">
+            Ещё не зарегистрированы?{' '}
+            <Link to="/signup" className="sign__enter">
+              Регистрация
+            </Link>
+          </p>
         </form>
       </div>
-      <button className="sign__button sign__button_login" type="submit">
-        Войти
-      </button>
-      <p className="sign__register">
-        Ещё не зарегистрированы?{' '}
-        <Link to="/signup" className="sign__enter">
-          Регистрация
-        </Link>
-      </p>
     </section>
   );
 }
