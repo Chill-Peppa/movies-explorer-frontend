@@ -52,7 +52,7 @@ function App() {
     auth
       .register(name, email, password)
       .then(() => {
-        navigate('/signin', { replace: true });
+        onLogin(email, password);
       })
       .catch((err) => {
         console.log(`${err}`);

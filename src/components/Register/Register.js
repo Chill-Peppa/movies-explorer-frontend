@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Register.css';
 import logo from '../../images/logo.svg';
@@ -25,7 +25,6 @@ function Register(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.onRegister(name, email, password);
-    console.log('клик');
   };
 
   return (

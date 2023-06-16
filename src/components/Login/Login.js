@@ -5,23 +5,46 @@ import '../Register/Register.css';
 import logo from '../../images/logo.svg';
 
 function Login(props) {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      return;
+    }
+
+    console.log('авторизация!');
+    props.onLogin(email, password);
+  };
   return (
     <section className="sign">
       <div className="sign__zone">
         <img className="sign__logo" alt="Лого" src={logo} />
         <h2 className="sign__header">Рады видеть!</h2>
-        <form className="sign__form" noValidate>
+        <form className="sign__form" onSubmit={handleSubmit} noValidate>
           <label htmlFor="email" className="sign__input-header">
             E-mail
           </label>
           <input
             className="sign__form-input"
             name="email"
+            value={email}
             id="email"
             autoComplete="off"
             type="email"
             minLength="2"
             maxLength="70"
+            onChange={handleChangeEmail}
             required
           />
           <span className="sign__input-error">Какая-то ошибка...</span>
@@ -31,11 +54,13 @@ function Login(props) {
           <input
             className="sign__form-input"
             name="password"
+            value={password}
             id="password"
             autoComplete="off"
             type="password"
             minLength="2"
             maxLength="40"
+            onChange={handleChangePassword}
             required
           />
           <span className="sign__input-error">Ошибка....</span>
