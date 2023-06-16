@@ -47,12 +47,12 @@ function App() {
   }, [navigate]);
 
   //функция на регистрацию
-  const onRegister = (name, email, password) => {
+  const onRegister = (values) => {
     // qwerty qwerty@yandex.ru qwerty
     auth
-      .register(name, email, password)
+      .register(values.name, values.email, values.password)
       .then(() => {
-        onLogin(email, password);
+        onLogin(values);
       })
       .catch((err) => {
         console.log(`${err}`);
@@ -60,9 +60,9 @@ function App() {
   };
 
   //функция на вход в приложение
-  const onLogin = (email, password) => {
+  const onLogin = (values) => {
     auth
-      .authorization(email, password)
+      .authorization(values.email, values.password)
       .then((data) => {
         if (data.token) {
           setLoggedIn(true);

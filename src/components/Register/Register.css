@@ -103,10 +103,15 @@
   font-size: 10px;
   line-height: 12px;
   color: #ee3465;
-  margin: 6px 0 4px 0;
+  margin: 6px 0 7px 0;
   display: block;
   max-width: 396px;
-  /*  opacity: 0;*/
+  height: 12px;
+  opacity: 0;
+}
+
+.sign__input-error_active {
+  opacity: 1;
 }
 
 .sign__button {
@@ -131,6 +136,15 @@
 
 .sign__button:hover {
   opacity: 0.8;
+}
+
+.sign__button_disabled {
+  cursor: not-allowed;
+  background: #f8f8f8;
+  color: #c2c2c2;
+  border-radius: 3px;
+  border: none;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 451px) {

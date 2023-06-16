@@ -1,30 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 import './Register.css';
 import logo from '../../images/logo.svg';
 
 function Register(props) {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  //const navigate = useNavigate();
-
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const { values, handleChange, errors, isValid } = useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onRegister(name, email, password);
+    props.onRegister(values);
   };
 
   return (
@@ -39,8 +25,8 @@ function Register(props) {
           <input
             className="sign__form-input"
             name="name"
-            value={name}
-            onChange={handleChangeName}
+            value={values.name || ''}
+            onChange={handleChange}
             id="name"
             autoComplete="off"
             type="name"
@@ -48,15 +34,20 @@ function Register(props) {
             maxLength="70"
             required
           />
-          <span className="sign__input-error">Какая-то ошибка...</span>
+          <span
+            className={`sign__input-error ${
+              isValid ? '' : 'sign__input-error_active'
+            }`}>
+            {errors.name}
+          </span>
           <label htmlFor="email" className="sign__input-header">
             E-mail
           </label>
           <input
             className="sign__form-input"
             name="email"
-            value={email}
-            onChange={handleChangeEmail}
+            value={values.email || ''}
+            onChange={handleChange}
             id="email"
             autoComplete="off"
             type="email"
@@ -64,15 +55,20 @@ function Register(props) {
             maxLength="70"
             required
           />
-          <span className="sign__input-error">Какая-то ошибка...</span>
+          <span
+            className={`sign__input-error ${
+              isValid ? '' : 'sign__input-error_active'
+            }`}>
+            {errors.email}
+          </span>
           <label htmlFor="password" className="sign__input-header">
             Пароль
           </label>
           <input
             className="sign__form-input"
             name="password"
-            value={password}
-            onChange={handleChangePassword}
+            value={values.password || ''}
+            onChange={handleChange}
             id="password"
             autoComplete="off"
             type="password"
@@ -80,8 +76,15 @@ function Register(props) {
             maxLength="40"
             required
           />
-          <span className="sign__input-error">Ошибка...</span>
-          <button className="sign__button" type="submit">
+          <span
+            className={`sign__input-error ${
+              isValid ? '' : 'sign__input-error_active'
+            }`}>
+            {errors.password}
+          </span>
+          <button
+            className={`sign__button ${isValid ? '' : 'sign__button_disabled'}`}
+            type="submit">
             Зарегистрироваться
           </button>
           <p className="sign__register">

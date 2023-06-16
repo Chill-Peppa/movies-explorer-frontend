@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 import '../Register/Register.css';
 import logo from '../../images/logo.svg';
 
 function Login(props) {
-  const [email, setEmail] = React.useState('');
+  const { values, handleChange, errors, isValid } = useFormAndValidation();
+  /*const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleChangeEmail = (e) => {
@@ -14,17 +16,17 @@ function Login(props) {
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
-  };
+  };*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!values.email || !values.password) {
       return;
     }
 
     console.log('авторизация!');
-    props.onLogin(email, password);
+    props.onLogin(values);
   };
   return (
     <section className="sign">
@@ -38,33 +40,47 @@ function Login(props) {
           <input
             className="sign__form-input"
             name="email"
-            value={email}
+            value={values.email || ''}
             id="email"
             autoComplete="off"
             type="email"
             minLength="2"
             maxLength="70"
-            onChange={handleChangeEmail}
+            onChange={handleChange}
             required
           />
-          <span className="sign__input-error">Какая-то ошибка...</span>
+          <span
+            className={`sign__input-error ${
+              isValid ? '' : 'sign__input-error_active'
+            }`}>
+            {errors.email}
+          </span>
           <label htmlFor="password" className="sign__input-header">
             Пароль
           </label>
           <input
             className="sign__form-input"
             name="password"
-            value={password}
+            value={values.password || ''}
             id="password"
             autoComplete="off"
             type="password"
             minLength="2"
             maxLength="40"
-            onChange={handleChangePassword}
+            onChange={handleChange}
             required
           />
-          <span className="sign__input-error">Ошибка....</span>
-          <button className="sign__button sign__button_login" type="submit">
+          <span
+            className={`sign__input-error ${
+              isValid ? '' : 'sign__input-error_active'
+            }`}>
+            {errors.password}
+          </span>
+          <button
+            className={`sign__button sign__button_login ${
+              isValid ? '' : 'sign__button_disabled'
+            }`}
+            type="submit">
             Войти
           </button>
           <p className="sign__register">
