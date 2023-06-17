@@ -2,11 +2,8 @@ import React from 'react';
 import '../Movies/Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { moviesArray } from '../../utils/movies.js';
 
 function Movies() {
-  console.log('array movies:', moviesArray);
-
   return (
     <section className="movies">
       <SearchForm />

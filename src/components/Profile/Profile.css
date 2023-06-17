@@ -81,6 +81,11 @@
   display: block;
   max-width: 396px;
   opacity: 0;
+  height: 12px;
+}
+
+.profile__input-error_active {
+  opacity: 1;
 }
 
 .profile__register {

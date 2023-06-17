@@ -10,6 +10,8 @@ import {
 } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { auth } from '../../utils/auth';
+import MainApi from '../../utils/MainApi';
+import MoviesApi from '../../utils/MoviesApi';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -29,12 +31,30 @@ function App() {
   //стейт для авторизации
   const [loggedIn, setLoggedIn] = React.useState(false);
 
+  /* -------------------- API ------------------- */
+
+  const mainApi = new MainApi({
+    //тут будет ссылка на мой бэк
+    baseUrl: 'http://localhost:3001',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
+
+  const moviesApi = new MoviesApi({
+    baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
   /* -------------------- АВТОРИЗАЦИЯ И РЕГИСТРАЦИЯ -------------------- */
   //проверяем токен
   React.useEffect(() => {
     const jwt = localStorage.getItem('token');
-
     if (jwt) {
+      console.log(jwt);
       auth
         .checkToken()
         .then((res) => {
@@ -44,7 +64,7 @@ function App() {
           console.log(`${err}`);
         });
     }
-  }, [navigate]);
+  }, []);
 
   //функция на регистрацию
   const onRegister = (values) => {
@@ -80,6 +100,21 @@ function App() {
     navigate('/signin', { replace: true });
     setLoggedIn(false);
   };
+
+  /* --------------- ОСТАЛЬНОЕ, ПОКА БЕЗ РАЗДЕЛЕНИЯ --------------- */
+  React.useEffect(() => {
+    loggedIn &&
+      mainApi
+        .getUserInfo()
+        .then((userData) => {
+          console.log(userData);
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.error(`Ошибка: ${err}`);
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
