@@ -1,4 +1,4 @@
-class Auth {
+export default class Auth {
   constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
   }
@@ -53,8 +53,3 @@ class Auth {
       .then((data) => data);
   }
 }
-
-export const auth = new Auth({
-  //тут будет ссылка на мой бэк
-  baseUrl: 'http://localhost:3001',
-});

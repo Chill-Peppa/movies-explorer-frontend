@@ -9,7 +9,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { auth } from '../../utils/auth';
+import Auth from '../../utils/auth';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 
@@ -34,6 +34,10 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   /* -------------------- API ------------------- */
+  const auth = new Auth({
+    //тут будет ссылка на мой бэк
+    baseUrl: 'http://localhost:3001',
+  });
 
   const mainApi = new MainApi({
     //тут будет ссылка на мой бэк
@@ -66,6 +70,7 @@ function App() {
           console.log(`${err}`);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //функция на регистрацию
@@ -118,6 +123,18 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
+  const handleUpdateUser = (data) => {
+    mainApi
+      .updateUserInfo(data)
+      .then((data) => {
+        console.log('data update:', data);
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.error(`Ошибка: ${err}`);
+      });
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -161,6 +178,7 @@ function App() {
                   <ProtectedRoute
                     element={Profile}
                     onSignOut={onSignOut}
+                    onUpdateProfile={handleUpdateUser}
                     loggedIn={loggedIn}
                   />
                 }

@@ -173,6 +173,7 @@
   font-size: 14px;
   line-height: 17px;
   text-align: center;
+  text-decoration: none;
   color: #8b8b8b;
 }
 
@@ -185,6 +186,7 @@
 
 .sign__enter {
   color: #4285f4;
+  text-decoration: none;
   cursor: pointer;
   opacity: 1;
   transition: all 0.4s ease-in-out;
