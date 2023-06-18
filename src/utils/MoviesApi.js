@@ -18,7 +18,7 @@ export default class MoviesApi {
   }
 
   //метод, чтобы получить все фильмы через запрос к серверу
-  getAllCards() {
+  getAllMovies() {
     return this._request(`${this._url}`, {
       headers: this._headers,
     });

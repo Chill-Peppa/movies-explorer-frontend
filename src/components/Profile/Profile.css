@@ -107,6 +107,23 @@
   }
 }
 
+.profile__success-text {
+  color: #2be080;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 13px;
+  padding: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+  opacity: 1;
+}
+
+.profile__success-text_disabled {
+  opacity: 0;
+}
+
 .profile__save {
   width: 100%;
   background: #3456f3;

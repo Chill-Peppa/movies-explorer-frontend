@@ -9,17 +9,21 @@ function Profile({ onSignOut, onUpdateProfile }) {
     useFormAndValidation();
   const currentUser = React.useContext(CurrentUserContext);
   const [showSaveBtn, setShowSaveBtn] = React.useState(false);
+  const [showSuccessText, setShowSuccessText] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdateProfile(values);
     setShowSaveBtn(false);
+    setShowSuccessText(true);
   };
 
   const handleShowSaveButton = (e) => {
     e.preventDefault();
     setShowSaveBtn(true);
+    setShowSuccessText(false);
   };
+
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.
   React.useEffect(() => {
@@ -83,6 +87,13 @@ function Profile({ onSignOut, onUpdateProfile }) {
           </span>
 
           <div className="profile__buttons-zone">
+            <span
+              className={`profile__success-text ${
+                showSuccessText ? '' : 'profile__success-text_disabled'
+              }`}>
+              Обновление данных прошло успешно!
+            </span>
+
             {showSaveBtn ? (
               <button
                 type="submit"
@@ -103,6 +114,7 @@ function Profile({ onSignOut, onUpdateProfile }) {
                 Редактировать
               </button>
             )}
+
             <Link to="/signin" className="profile__exit" onClick={onSignOut}>
               Выйти из аккаунта
             </Link>
