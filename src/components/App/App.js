@@ -13,6 +13,8 @@ import { auth } from '../../utils/auth';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
@@ -97,7 +99,7 @@ function App() {
   //функция на выход из приложения
   const onSignOut = () => {
     localStorage.removeItem('token');
-    navigate('/signin', { replace: true });
+    navigate('/', { replace: true });
     setLoggedIn(false);
   };
 
@@ -128,12 +130,11 @@ function App() {
           ) : null}
           <main className="main">
             <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/movies" element={<Movies />} />
-              <Route path="/saved-movies" element={<SavedMovies />} />
               <Route
-                path="/profile"
-                element={<Profile onSignOut={onSignOut} />}
+                path="/"
+                element={
+                  loggedIn ? <Navigate to="/movies" replace /> : <Main />
+                }
               />
               <Route
                 path="/signup"
@@ -141,6 +142,29 @@ function App() {
               />
               <Route path="/signin" element={<Login onLogin={onLogin} />} />
               <Route path="*" element={<PageNotFound />} />
+
+              <Route
+                path="/movies"
+                element={
+                  <ProtectedRoute element={Movies} loggedIn={loggedIn} />
+                }
+              />
+              <Route
+                path="/saved-movies"
+                element={
+                  <ProtectedRoute element={SavedMovies} loggedIn={loggedIn} />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute
+                    element={Profile}
+                    onSignOut={onSignOut}
+                    loggedIn={loggedIn}
+                  />
+                }
+              />
             </Routes>
           </main>
           {pathname === '/' ||
