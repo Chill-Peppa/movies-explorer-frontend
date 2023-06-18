@@ -35,7 +35,7 @@ function App() {
 
   const mainApi = new MainApi({
     //тут будет ссылка на мой бэк
-    baseUrl: 'http://localhost:3001',
+    url: 'http://localhost:3001',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -43,7 +43,7 @@ function App() {
   });
 
   const moviesApi = new MoviesApi({
-    baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
+    url: 'https://api.nomoreparties.co/beatfilm-movies',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -107,7 +107,7 @@ function App() {
       mainApi
         .getUserInfo()
         .then((userData) => {
-          console.log(userData);
+          console.log('user array:', userData);
           setCurrentUser(userData);
         })
         .catch((err) => {
