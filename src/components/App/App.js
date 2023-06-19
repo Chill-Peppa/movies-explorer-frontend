@@ -32,6 +32,8 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' });
   //стейт для авторизации
   const [loggedIn, setLoggedIn] = React.useState(false);
+  //стейт для фильмов
+  const [movies, setMovies] = React.useState([]);
 
   /* -------------------- API ------------------- */
   const auth = new Auth({
@@ -111,6 +113,21 @@ function App() {
   /* --------------- ОСТАЛЬНОЕ, ПОКА БЕЗ РАЗДЕЛЕНИЯ --------------- */
   React.useEffect(() => {
     loggedIn &&
+      Promise.all([mainApi.getUserInfo(), moviesApi.getAllMovies()])
+        .then(([userData, initialMovies]) => {
+          setCurrentUser(userData);
+          console.log('user array:', userData);
+          setMovies(initialMovies);
+          console.log('movies array:', initialMovies);
+        })
+        .catch((err) => {
+          console.error(`Ошибка: ${err}`);
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn]);
+
+  /*React.useEffect(() => {
+    loggedIn &&
       mainApi
         .getUserInfo()
         .then((userData) => {
@@ -121,7 +138,21 @@ function App() {
           console.error(`Ошибка: ${err}`);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
+  }, [loggedIn]);*/
+
+  React.useEffect(() => {
+    loggedIn &&
+      moviesApi
+        .getAllMovies()
+        .then((moviesArray) => {
+          console.log('movies array:', moviesArray);
+          setMovies(moviesArray);
+        })
+        .catch((err) => {
+          console.error(`Ошибка: ${err}`);
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleUpdateUser = (data) => {
     mainApi
@@ -163,7 +194,11 @@ function App() {
               <Route
                 path="/movies"
                 element={
-                  <ProtectedRoute element={Movies} loggedIn={loggedIn} />
+                  <ProtectedRoute
+                    element={Movies}
+                    loggedIn={loggedIn}
+                    movies={movies}
+                  />
                 }
               />
               <Route
