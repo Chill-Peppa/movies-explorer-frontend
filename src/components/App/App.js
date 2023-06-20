@@ -9,9 +9,9 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import Auth from '../../utils/auth';
-import MainApi from '../../utils/MainApi';
-import MoviesApi from '../../utils/MoviesApi';
+import Auth from '../../utils/api/auth';
+import MainApi from '../../utils/api/MainApi';
+import MoviesApi from '../../utils/api/MoviesApi';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -126,34 +126,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
-  /*React.useEffect(() => {
-    loggedIn &&
-      mainApi
-        .getUserInfo()
-        .then((userData) => {
-          console.log('user array:', userData);
-          setCurrentUser(userData);
-        })
-        .catch((err) => {
-          console.error(`Ошибка: ${err}`);
-        });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);*/
-
-  React.useEffect(() => {
-    loggedIn &&
-      moviesApi
-        .getAllMovies()
-        .then((moviesArray) => {
-          console.log('movies array:', moviesArray);
-          setMovies(moviesArray);
-        })
-        .catch((err) => {
-          console.error(`Ошибка: ${err}`);
-        });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const handleUpdateUser = (data) => {
     mainApi
       .updateUserInfo(data)
@@ -204,7 +176,11 @@ function App() {
               <Route
                 path="/saved-movies"
                 element={
-                  <ProtectedRoute element={SavedMovies} loggedIn={loggedIn} />
+                  <ProtectedRoute
+                    element={SavedMovies}
+                    loggedIn={loggedIn}
+                    movies={movies}
+                  />
                 }
               />
               <Route

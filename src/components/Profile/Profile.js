@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { validateEmail, validateName } from '../../utils/functions/validators';
 import './Profile.css';
 
 function Profile({ onSignOut, onUpdateProfile }) {
-  const { values, handleChange, errors, isValid, setValues } =
-    useFormAndValidation();
+  const { values, handleChange, setValues } = useFormAndValidation();
   const currentUser = React.useContext(CurrentUserContext);
   const [showSaveBtn, setShowSaveBtn] = React.useState(false);
   const [showSuccessText, setShowSuccessText] = React.useState(false);
@@ -54,11 +54,8 @@ function Profile({ onSignOut, onUpdateProfile }) {
               required
             />
           </div>
-          <span
-            className={`profile__input-error ${
-              isValid ? '' : 'profile__input-error_active'
-            }`}>
-            {errors.name}
+          <span className={`profile__input-error profile__input-error_active`}>
+            {validateName(values.name).error}
           </span>
 
           <div className="profile__input-zone">
@@ -79,11 +76,8 @@ function Profile({ onSignOut, onUpdateProfile }) {
               required
             />
           </div>
-          <span
-            className={`profile__input-error ${
-              isValid ? '' : 'profile__input-error_active'
-            }`}>
-            {errors.email}
+          <span className={`profile__input-error profile__input-error_active`}>
+            {validateEmail(values.email).error}
           </span>
 
           <div className="profile__buttons-zone">
@@ -98,9 +92,10 @@ function Profile({ onSignOut, onUpdateProfile }) {
               <button
                 type="submit"
                 className={`profile__save ${
-                  !isValid ||
-                  (values.name === currentUser.name &&
-                    values.email === currentUser.email)
+                  values.name === currentUser.name &&
+                  values.email === currentUser.email &&
+                  validateName(values.name).activeButton &&
+                  validateEmail(values.email).activeButton
                     ? 'profile__save_disabled'
                     : ''
                 }`}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { validateEmail } from '../../utils/functions/validators';
 
 import '../Register/Register.css';
 import logo from '../../images/logo.svg';
@@ -53,7 +54,7 @@ function Login(props) {
             className={`sign__input-error ${
               isValid ? '' : 'sign__input-error_active'
             }`}>
-            {errors.email}
+            {validateEmail(values.email).error}
           </span>
           <label htmlFor="password" className="sign__input-header">
             Пароль
@@ -78,7 +79,9 @@ function Login(props) {
           </span>
           <button
             className={`sign__button sign__button_login ${
-              isValid ? '' : 'sign__button_disabled'
+              isValid && validateEmail(values.email).activeButton
+                ? ''
+                : 'sign__button_disabled'
             }`}
             type="submit">
             Войти

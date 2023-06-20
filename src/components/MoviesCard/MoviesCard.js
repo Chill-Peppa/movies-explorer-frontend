@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './MoviesCard.css';
-import { timeConverter } from '../../utils/timeConverter';
+import { timeConverter } from '../../utils/functions/timeConverter';
 import { baseImgLink } from '../../utils/constants';
 
 function MoviesCard({ movie }) {

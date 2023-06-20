@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { validateEmail, validateName } from '../../utils/functions/validators';
 
 import './Register.css';
 import logo from '../../images/logo.svg';
@@ -38,7 +39,7 @@ function Register(props) {
             className={`sign__input-error ${
               isValid ? '' : 'sign__input-error_active'
             }`}>
-            {errors.name}
+            {validateName(values.name).error}
           </span>
           <label htmlFor="email" className="sign__input-header">
             E-mail
@@ -59,7 +60,7 @@ function Register(props) {
             className={`sign__input-error ${
               isValid ? '' : 'sign__input-error_active'
             }`}>
-            {errors.email}
+            {validateEmail(values.email).error}
           </span>
           <label htmlFor="password" className="sign__input-header">
             Пароль
@@ -83,7 +84,13 @@ function Register(props) {
             {errors.password}
           </span>
           <button
-            className={`sign__button ${isValid ? '' : 'sign__button_disabled'}`}
+            className={`sign__button ${
+              isValid &&
+              validateEmail(values.email).activeButton &&
+              validateName(values.name).activeButton
+                ? ''
+                : 'sign__button_disabled'
+            }`}
             type="submit">
             Зарегистрироваться
           </button>
