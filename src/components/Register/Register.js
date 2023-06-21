@@ -83,6 +83,12 @@ function Register(props) {
             }`}>
             {errors.password}
           </span>
+          <span
+            className={`sign__api-error ${
+              props.serverError ? '' : 'sign__api-error_disabled'
+            }`}>
+            {props.serverError.error}
+          </span>
           <button
             className={`sign__button ${
               isValid &&

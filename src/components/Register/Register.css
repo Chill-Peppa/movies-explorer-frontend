@@ -114,12 +114,30 @@
   opacity: 1;
 }
 
+.sign__api-error {
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 12px;
+  height: 13px;
+  line-height: 13px;
+  padding: 0;
+  display: block;
+  width: 100%;
+  margin-top: 97px;
+  text-align: center;
+  opacity: 1;
+}
+
+.sign__api-error_disabled {
+  opacity: 0;
+}
+
 .sign__button {
   max-width: 396px;
   width: 100%;
   /*padding: 15px 0 15px 0;*/
   height: 45px;
-  margin: 130px 0 16px 0;
+  margin: 20px 0 16px 0; /*130px*/
   cursor: pointer;
   background-color: #4285f4;
   border-radius: 3px;
@@ -151,17 +169,17 @@
   .sign__button {
     max-width: 260px;
     width: 100%;
-    margin: 215px 0 16px 0;
+    margin: 20px 0 16px 0; /*215px*/
   }
 }
 
 .sign__button_login {
-  margin: 201px 0 16px 0;
+  margin: 20px 0 16px 0;
 }
 
 @media screen and (max-width: 451px) {
   .sign__button_login {
-    margin: 286px 0 15px 0;
+    margin: 20px 0 15px 0;
   }
 }
 

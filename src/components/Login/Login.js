@@ -77,6 +77,12 @@ function Login(props) {
             }`}>
             {errors.password}
           </span>
+          <span
+            className={`sign__api-error ${
+              props.serverError ? '' : 'sign__api-error_disabled'
+            }`}>
+            {props.serverError.error}
+          </span>
           <button
             className={`sign__button sign__button_login ${
               isValid && validateEmail(values.email).activeButton

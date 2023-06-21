@@ -34,6 +34,10 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   //стейт для фильмов
   const [movies, setMovies] = React.useState([]);
+  //стейт ошибок с сервера
+  const [serverError, setServerError] = React.useState({});
+  //стейт для проверки корректности запроса в профиле юзера
+  const [isOkRequest, setIsOkRequest] = React.useState(false);
 
   /* -------------------- API ------------------- */
   const auth = new Auth({
@@ -85,6 +89,7 @@ function App() {
       })
       .catch((err) => {
         console.log(`${err}`);
+        setServerError(err);
       });
   };
 
@@ -100,6 +105,7 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+        setServerError(err);
       });
   };
 
@@ -135,6 +141,7 @@ function App() {
       })
       .catch((err) => {
         console.error(`Ошибка: ${err}`);
+        setServerError(err);
       });
   };
 
@@ -158,9 +165,14 @@ function App() {
               />
               <Route
                 path="/signup"
-                element={<Register onRegister={onRegister} />}
+                element={
+                  <Register onRegister={onRegister} serverError={serverError} />
+                }
               />
-              <Route path="/signin" element={<Login onLogin={onLogin} />} />
+              <Route
+                path="/signin"
+                element={<Login onLogin={onLogin} serverError={serverError} />}
+              />
               <Route path="*" element={<PageNotFound />} />
 
               <Route
@@ -191,6 +203,8 @@ function App() {
                     onSignOut={onSignOut}
                     onUpdateProfile={handleUpdateUser}
                     loggedIn={loggedIn}
+                    isOk={isOkRequest}
+                    serverError={serverError}
                   />
                 }
               />

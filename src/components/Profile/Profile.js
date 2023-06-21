@@ -5,7 +5,7 @@ import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { validateEmail, validateName } from '../../utils/functions/validators';
 import './Profile.css';
 
-function Profile({ onSignOut, onUpdateProfile }) {
+function Profile({ onSignOut, onUpdateProfile, serverError }) {
   const { values, handleChange, setValues } = useFormAndValidation();
   const currentUser = React.useContext(CurrentUserContext);
   const [showSaveBtn, setShowSaveBtn] = React.useState(false);
@@ -92,10 +92,10 @@ function Profile({ onSignOut, onUpdateProfile }) {
               <button
                 type="submit"
                 className={`profile__save ${
-                  values.name === currentUser.name &&
-                  values.email === currentUser.email &&
-                  validateName(values.name).activeButton &&
-                  validateEmail(values.email).activeButton
+                  (values.name === currentUser.name &&
+                    values.email === currentUser.email) ||
+                  !validateName(values.name).activeButton ||
+                  !validateEmail(values.email).activeButton
                     ? 'profile__save_disabled'
                     : ''
                 }`}>
