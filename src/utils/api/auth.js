@@ -10,7 +10,7 @@ export default class Auth {
     /*return Promise.reject(`Ошибка: ${res.status}`);*/
     return res.text().then((text) => {
       return Promise.reject({
-        statusError: res.status,
+        statusError: res.statusCode,
         error: JSON.parse(text).message,
       });
     });

@@ -125,6 +125,24 @@
   opacity: 0;
 }
 
+.profile__error-text {
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 12px;
+  height: 13px;
+  line-height: 13px;
+  padding: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+  opacity: 1;
+}
+
+.profile__error-text_disabled {
+  opacity: 0;
+}
+
 .profile__save {
   width: 100%;
   background: #3456f3;

@@ -105,6 +105,7 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+        console.log(`Статус ошибки: ${serverError.statusError}`);
         setServerError(err);
       });
   };
@@ -138,10 +139,12 @@ function App() {
       .then((data) => {
         console.log('data update:', data);
         setCurrentUser(data);
+        setIsOkRequest(true);
       })
       .catch((err) => {
         console.error(`Ошибка: ${err}`);
         setServerError(err);
+        setIsOkRequest(false);
       });
   };
 
@@ -203,7 +206,7 @@ function App() {
                     onSignOut={onSignOut}
                     onUpdateProfile={handleUpdateUser}
                     loggedIn={loggedIn}
-                    isOk={isOkRequest}
+                    isOkRequest={isOkRequest}
                     serverError={serverError}
                   />
                 }

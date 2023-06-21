@@ -5,7 +5,7 @@ import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { validateEmail, validateName } from '../../utils/functions/validators';
 import './Profile.css';
 
-function Profile({ onSignOut, onUpdateProfile, serverError }) {
+function Profile({ onSignOut, onUpdateProfile, serverError, isOkRequest }) {
   const { values, handleChange, setValues } = useFormAndValidation();
   const currentUser = React.useContext(CurrentUserContext);
   const [showSaveBtn, setShowSaveBtn] = React.useState(false);
@@ -81,12 +81,21 @@ function Profile({ onSignOut, onUpdateProfile, serverError }) {
           </span>
 
           <div className="profile__buttons-zone">
-            <span
-              className={`profile__success-text ${
-                showSuccessText ? '' : 'profile__success-text_disabled'
-              }`}>
-              Обновление данных прошло успешно!
-            </span>
+            {isOkRequest ? (
+              <span
+                className={`profile__success-text ${
+                  showSuccessText ? '' : 'profile__success-text_disabled'
+                }`}>
+                Обновление данных прошло успешно!
+              </span>
+            ) : (
+              <span
+                className={`profile__error-text ${
+                  serverError ? '' : 'profile__error-text_disabled'
+                }`}>
+                {serverError.error}
+              </span>
+            )}
 
             {showSaveBtn ? (
               <button
