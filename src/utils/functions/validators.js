@@ -54,3 +54,13 @@ export const validateName = (name) => {
     };
   }
 };
+
+export const validateSearch = (search) => {
+  if (search !== undefined) {
+    if (search.length === 0) {
+      return 'Нужно ввести ключевое слово. ⛔️';
+    }
+  } else if (search === undefined) {
+    return '';
+  }
+};

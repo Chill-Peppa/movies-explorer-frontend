@@ -3,9 +3,10 @@ import './SearchForm.css';
 import find from '../../images/find.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { validateSearch } from '../../utils/functions/validators';
 
 function SearchForm() {
-  const { values, handleChange, errors, isValid } = useFormAndValidation();
+  const { values, handleChange, isValid } = useFormAndValidation();
 
   return (
     <section className="search-form">
@@ -27,7 +28,7 @@ function SearchForm() {
           className={`search-form__span ${
             isValid ? '' : 'search-form__span_active'
           }`}>
-          {errors.search}
+          {validateSearch(values.search)}
         </span>
       </form>
       <FilterCheckbox />
