@@ -38,6 +38,7 @@ function App() {
   const [serverError, setServerError] = React.useState({});
   //стейт для проверки корректности запроса в профиле юзера
   const [isOkRequest, setIsOkRequest] = React.useState(false);
+  //стейт для прелоадера
 
   /* -------------------- API ------------------- */
   const auth = new Auth({

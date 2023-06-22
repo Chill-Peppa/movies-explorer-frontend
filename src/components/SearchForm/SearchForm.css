@@ -83,3 +83,22 @@
   border-radius: 50%;
   z-index: 0;
 }
+
+.search-form__span {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin: 6px 0 7px 0;
+  display: block;
+  max-width: 396px;
+  height: 12px;
+  opacity: 0;
+  margin-left: 22px;
+}
+
+.search-form__span_active {
+  opacity: 1;
+}
