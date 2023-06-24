@@ -87,6 +87,24 @@
   }
 }
 
+.movies-card__delete {
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  background: url('../../images/delete.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  width: 14px;
+}
+
+@media screen and (max-width: 450px) {
+  .movies-card__delete {
+    margin: 0;
+  }
+}
+
 .movies-card__duration {
   padding: 0 0 16px 16px;
   font-style: normal;

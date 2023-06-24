@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 import './MoviesCard.css';
 import { timeConverter } from '../../utils/functions/timeConverter';
 import { baseImgLink } from '../../utils/constants';
 
 function MoviesCard({ movie }) {
+  const { pathname } = useLocation();
+
   return (
     <li className="movies-card">
       <Link
@@ -20,7 +22,13 @@ function MoviesCard({ movie }) {
       </Link>
       <div className="movies-card__about">
         <h2 className="movies-card__header">{movie.nameRU}</h2>
-        <button type="button" className="movies-card__icon" alt="Лайк" />
+
+        {pathname === '/movies' && (
+          <button type="button" className="movies-card__icon" alt="Лайк" />
+        )}
+        {pathname === '/saved-movies' && (
+          <button type="button" className="movies-card__delete" alt="Крестик" />
+        )}
       </div>
       <span className="movies-card__duration">
         {timeConverter(movie.duration)}
