@@ -7,6 +7,11 @@ import { baseImgLink } from '../../utils/constants';
 
 function MoviesCard({ movie }) {
   const { pathname } = useLocation();
+  const [isLiked, setIsLiked] = React.useState(false);
+  //подом надо не забыть подставить, это для выбора класса лайка
+  const cardLikeButtonClassName = `movies-card__icon ${
+    isLiked ? 'movies-card__icon_active' : ''
+  }`;
 
   return (
     <li className="movies-card">

@@ -8,15 +8,24 @@ import { validateSearch } from '../../utils/functions/validators';
 function SearchForm({ onFilter }) {
   const { values, handleChange, isValid } = useFormAndValidation();
 
+  /*const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onFilter(values.search, stateCheckbox);
+    console.log(values.search);
+  };*/
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    //тут будет функция на поиск и отображение фильмов (отфильтрованных)
+
     onFilter(values.search);
+    console.log('текущее значение инпута:', values.search);
   };
 
   return (
     <section className="search-form">
       <form className="search-form__input-zone" onSubmit={handleSubmit}>
+        <p className="search-form__clear">Очистить инпут</p>
         <input
           className="search-form__input"
           name="search"

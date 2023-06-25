@@ -87,6 +87,19 @@
   }
 }
 
+.movies-card__icon_active {
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  width: 14px;
+  height: 12px;
+  background: url('../../images/like.svg');
+}
+
 .movies-card__delete {
   cursor: pointer;
   border: none;
