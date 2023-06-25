@@ -5,7 +5,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { validateSearch } from '../../utils/functions/validators';
 
-function SearchForm({ onFilter }) {
+function SearchForm({ onFilter, onDeleteValues, isChecked, checkboxChange }) {
   const { values, handleChange, isValid } = useFormAndValidation();
 
   /*const handleSubmit = (e) => {
@@ -18,14 +18,16 @@ function SearchForm({ onFilter }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onFilter(values.search);
+    onFilter(values.search, isChecked);
     console.log('текущее значение инпута:', values.search);
   };
 
   return (
     <section className="search-form">
       <form className="search-form__input-zone" onSubmit={handleSubmit}>
-        <p className="search-form__clear">Очистить инпут</p>
+        <p className="search-form__clear" onClick={onDeleteValues}>
+          Очистить инпут
+        </p>
         <input
           className="search-form__input"
           name="search"
@@ -46,7 +48,7 @@ function SearchForm({ onFilter }) {
           {validateSearch(values.search)}
         </span>
       </form>
-      <FilterCheckbox />
+      <FilterCheckbox isChecked={isChecked} checkboxChange={checkboxChange} />
     </section>
   );
 }
