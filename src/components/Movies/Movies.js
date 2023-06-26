@@ -81,11 +81,11 @@ function Movies({ movies, moviesError }) {
     }
   }, [searchedMovies, localCheckbox, localInputVal]);
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     console.log(filteredMovies);
     console.log('локал фильмы', searchedMovies);
     console.log('localStorage input value', localInputVal);
-  }, [filteredMovies, searchedMovies, localInputVal]);
+  }, [filteredMovies, searchedMovies, localInputVal]);*/
 
   return (
     <section className="movies">
@@ -108,33 +108,11 @@ function Movies({ movies, moviesError }) {
 
       {isLoading ? (
         <Preloader />
-      ) : filteredMovies ? (
-        <MoviesCardList movies={filteredMovies} moviesError={moviesError} />
-      ) : (
-        <p className="movies__not-found">Ничего не найдено 😢</p>
-      )}
-
-      {/*{serverError ? (
-        <p className="movies__error">
-          Во время запроса произошла ошибка. Возможно, проблема с соединением
-          или сервер недоступен. Подождите немного и попробуйте ещё раз
-        </p>
-      ) : (
-        ''
-      )}*/}
-
-      {/*{isLoading ? (
-        <Preloader />
-      ) : filteredMovies.length === 0 && moviesError ? (
-        <p className="movies__error">
-          Во время запроса произошла ошибка. Возможно, проблема с соединением
-          или сервер недоступен. Подождите немного и попробуйте ещё раз
-        </p>
       ) : filteredMovies.length !== 0 ? (
         <MoviesCardList movies={filteredMovies} moviesError={moviesError} />
       ) : (
         <p className="movies__not-found">Ничего не найдено 😢</p>
-      )}*/}
+      )}
 
       <div className="movies__button-zone">
         <button className="movies__button" type="button">

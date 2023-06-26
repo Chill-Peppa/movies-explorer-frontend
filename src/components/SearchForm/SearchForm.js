@@ -40,7 +40,7 @@ function SearchForm({
         <img className="search-form__icon" src={find} alt="Иконка поиска" />
         <span
           className={`search-form__span ${
-            inputValue.length !== 0 ? '' : 'search-form__span_active'
+            inputValue ? '' : 'search-form__span_active'
           }`}>
           Нужно ввести ключевое слово. ⛔️
         </span>
