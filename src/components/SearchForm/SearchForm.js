@@ -2,37 +2,34 @@ import React from 'react';
 import './SearchForm.css';
 import find from '../../images/find.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import { useFormAndValidation } from '../../hooks/useFormAndValidation';
-import { validateSearch } from '../../utils/functions/validators';
+//import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+//import { validateSearch } from '../../utils/functions/validators';
 
-function SearchForm({ onFilter, onDeleteValues, isChecked, checkboxChange }) {
-  const { values, handleChange, isValid } = useFormAndValidation();
-
-  /*const handleSubmit = (e) => {
-    e.preventDefault();
-
-    onFilter(values.search, stateCheckbox);
-    console.log(values.search);
-  };*/
-
+function SearchForm({
+  onFilter,
+  isChecked,
+  checkboxChange,
+  handleInputChange,
+  inputValue,
+}) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onFilter(values.search, isChecked);
-    console.log('текущее значение инпута:', values.search);
+    onFilter(inputValue, isChecked);
+    console.log('текущее значение инпута:', inputValue);
   };
 
   return (
     <section className="search-form">
       <form className="search-form__input-zone" onSubmit={handleSubmit}>
-        <p className="search-form__clear" onClick={onDeleteValues}>
+        {/*<p className="search-form__clear" onClick={onDeleteValues}>
           Очистить инпут
-        </p>
+  </p>*/}
         <input
           className="search-form__input"
           name="search"
-          value={values.search || ''}
-          onChange={handleChange}
+          value={inputValue || ''}
+          onChange={handleInputChange}
           id="search"
           autoComplete="off"
           type="text"
@@ -43,9 +40,9 @@ function SearchForm({ onFilter, onDeleteValues, isChecked, checkboxChange }) {
         <img className="search-form__icon" src={find} alt="Иконка поиска" />
         <span
           className={`search-form__span ${
-            isValid ? '' : 'search-form__span_active'
+            inputValue.length !== 0 ? '' : 'search-form__span_active'
           }`}>
-          {validateSearch(values.search)}
+          Нужно ввести ключевое слово. ⛔️
         </span>
       </form>
       <FilterCheckbox isChecked={isChecked} checkboxChange={checkboxChange} />

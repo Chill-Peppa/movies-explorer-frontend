@@ -10,6 +10,13 @@ function Movies({ movies }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [inputText, setInputText] = React.useState('');
 
+  //Функция для onChange поиска
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+
+    setInputText(e.target.value);
+  };
+
   //Функция тоггла чекбокса
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -28,28 +35,40 @@ function Movies({ movies }) {
     localStorage.setItem('inputVal', JSON.stringify(inputValue));
     localStorage.setItem('checkboxState', JSON.stringify(isCheckedState));
 
-    let newFilteredArray = [];
+    setIsLoading(true);
+    //для проверки прелоадера
+    setTimeout(() => {
+      let newFilteredArray = [];
 
-    if (isCheckedState) {
-      newFilteredArray = movies.filter((movie) => {
-        return (
-          (movie.nameRU.toLowerCase().includes(inputValue) ||
-            movie.nameEN.toLowerCase().includes(inputValue)) &&
-          movie.duration <= 40
+      if (isCheckedState) {
+        newFilteredArray = movies.filter((movie) => {
+          return (
+            (movie.nameRU.toLowerCase().includes(inputValue) ||
+              movie.nameEN.toLowerCase().includes(inputValue)) &&
+            movie.duration <= 40
+          );
+        });
+        setFilteredMovies(newFilteredArray);
+        localStorage.setItem(
+          'searchedMovies',
+          JSON.stringify(newFilteredArray),
         );
-      });
-      setFilteredMovies(newFilteredArray);
-      localStorage.setItem('searchedMovies', JSON.stringify(newFilteredArray));
-    } else if (!isCheckedState) {
-      newFilteredArray = movies.filter((movie) => {
-        return (
-          movie.nameRU.toLowerCase().includes(inputValue) ||
-          movie.nameEN.toLowerCase().includes(inputValue)
+      } else if (!isCheckedState) {
+        newFilteredArray = movies.filter((movie) => {
+          return (
+            movie.nameRU.toLowerCase().includes(inputValue) ||
+            movie.nameEN.toLowerCase().includes(inputValue)
+          );
+        });
+        setFilteredMovies(newFilteredArray);
+        localStorage.setItem(
+          'searchedMovies',
+          JSON.stringify(newFilteredArray),
         );
-      });
-      setFilteredMovies(newFilteredArray);
-      localStorage.setItem('searchedMovies', JSON.stringify(newFilteredArray));
-    }
+      }
+
+      setIsLoading(false);
+    }, 2000);
   };
 
   const searchedMovies = localStorage.getItem('searchedMovies');
@@ -81,9 +100,10 @@ function Movies({ movies }) {
         onDeleteValues={handleRemoveLocalStorageData}
         checkboxChange={handleCheckboxChange}
         isChecked={isChecked}
+        handleInputChange={handleSearchChange}
         inputValue={inputText}
       />
-      <MoviesCardList movies={filteredMovies} />
+      {isLoading ? <Preloader /> : <MoviesCardList movies={filteredMovies} />}
       <div className="movies__button-zone">
         <button className="movies__button" type="button">
           Ещё
@@ -94,18 +114,3 @@ function Movies({ movies }) {
 }
 
 export default Movies;
-
-/*     setTimeout(() => {
-      let newFilteredArray = [];
-
-      newFilteredArray = movies.filter((movie) => {
-        return (
-          movie.nameRU.toLowerCase().includes(inputValue) ||
-          movie.nameEN.toLowerCase().includes(inputValue)
-        );
-      });
-
-      setFilteredMovies(newFilteredArray);
-
-      localStorage.setItem('searchedMovies', JSON.stringify(newFilteredArray));
-    }, 3000); */
