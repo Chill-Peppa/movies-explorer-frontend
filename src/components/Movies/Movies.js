@@ -4,7 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
-function Movies({ movies }) {
+function Movies({ movies, moviesError }) {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isChecked, setIsChecked] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -23,12 +23,6 @@ function Movies({ movies }) {
     console.log('стейт чекбокса В ФУНКЦИИ после клика', isChecked);
   };
   console.log('стейт чекбокса вне функции', isChecked);
-
-  //Функция удаления текста из инпута (ПЕРЕПИСАТЬ ПОТОМ)
-  const handleRemoveLocalStorageData = (inputValue) => {
-    localStorage.removeItem('searchedMovies');
-    localStorage.removeItem('localInputVal');
-  };
 
   //Функция фильтрации
   const handleFilterMovies = (inputValue, isCheckedState) => {
@@ -97,13 +91,51 @@ function Movies({ movies }) {
     <section className="movies">
       <SearchForm
         onFilter={handleFilterMovies}
-        onDeleteValues={handleRemoveLocalStorageData}
         checkboxChange={handleCheckboxChange}
         isChecked={isChecked}
         handleInputChange={handleSearchChange}
         inputValue={inputText}
       />
-      {isLoading ? <Preloader /> : <MoviesCardList movies={filteredMovies} />}
+
+      {moviesError && filteredMovies.length === 0 ? (
+        <p className="movies__error">
+          Во время запроса произошла ошибка. Возможно, проблема с соединением
+          или сервер недоступен. Подождите немного и попробуйте ещё раз
+        </p>
+      ) : (
+        ''
+      )}
+
+      {isLoading ? (
+        <Preloader />
+      ) : filteredMovies ? (
+        <MoviesCardList movies={filteredMovies} moviesError={moviesError} />
+      ) : (
+        <p className="movies__not-found">Ничего не найдено 😢</p>
+      )}
+
+      {/*{serverError ? (
+        <p className="movies__error">
+          Во время запроса произошла ошибка. Возможно, проблема с соединением
+          или сервер недоступен. Подождите немного и попробуйте ещё раз
+        </p>
+      ) : (
+        ''
+      )}*/}
+
+      {/*{isLoading ? (
+        <Preloader />
+      ) : filteredMovies.length === 0 && moviesError ? (
+        <p className="movies__error">
+          Во время запроса произошла ошибка. Возможно, проблема с соединением
+          или сервер недоступен. Подождите немного и попробуйте ещё раз
+        </p>
+      ) : filteredMovies.length !== 0 ? (
+        <MoviesCardList movies={filteredMovies} moviesError={moviesError} />
+      ) : (
+        <p className="movies__not-found">Ничего не найдено 😢</p>
+      )}*/}
+
       <div className="movies__button-zone">
         <button className="movies__button" type="button">
           Ещё

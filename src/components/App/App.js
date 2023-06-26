@@ -38,6 +38,8 @@ function App() {
   //стейт для проверки корректности запроса в профиле юзера
   const [isOkRequest, setIsOkRequest] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  //стейт для ошибки в мувис
+  const [isMoviesError, setIsMoviesError] = React.useState(false);
 
   /* -------------------- API ------------------- */
   const auth = new Auth({
@@ -123,7 +125,6 @@ function App() {
   };
 
   /* --------------- ОСТАЛЬНОЕ, ПОКА БЕЗ РАЗДЕЛЕНИЯ --------------- */
-  //переписать отдельно под юзера. карточки буду получать в другом месте
   React.useEffect(() => {
     loggedIn &&
       Promise.all([mainApi.getUserInfo(), moviesApi.getAllMovies()])
@@ -132,9 +133,11 @@ function App() {
           console.log('user array:', userData);
           setMovies(initialMovies);
           console.log('movies array:', initialMovies);
+          setIsMoviesError(false);
         })
         .catch((err) => {
           console.error(`Ошибка: ${err}`);
+          setIsMoviesError(true);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
@@ -211,6 +214,7 @@ function App() {
                       element={Movies}
                       loggedIn={loggedIn}
                       movies={movies}
+                      moviesError={isMoviesError}
                     />
                   }
                 />
@@ -233,7 +237,6 @@ function App() {
                       onUpdateProfile={handleUpdateUser}
                       loggedIn={loggedIn}
                       isOkRequest={isOkRequest}
-                      serverError={serverError}
                     />
                   }
                 />

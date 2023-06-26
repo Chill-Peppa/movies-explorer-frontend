@@ -28,7 +28,6 @@ function Profile({ onSignOut, onUpdateProfile, serverError, isOkRequest }) {
   // его данные будут использованы в управляемых компонентах.
   React.useEffect(() => {
     setValues(currentUser);
-    //console.log(currentUser);
   }, [currentUser, setValues]);
 
   return (

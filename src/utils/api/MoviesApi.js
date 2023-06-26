@@ -9,7 +9,13 @@ export default class MoviesApi {
       return res.json();
     }
 
-    return Promise.reject(`Ошибка: ${res.status}`);
+    /*return Promise.reject(`Ошибка: ${res.status}`);*/
+    return res.text().then((text) => {
+      return Promise.reject({
+        statusError: res.statusCode,
+        error: JSON.parse(text).message,
+      });
+    });
   }
 
   //универсальный метод запроса с проверкой ответа
