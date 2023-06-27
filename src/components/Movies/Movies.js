@@ -9,6 +9,8 @@ function Movies({ movies, moviesError }) {
   const [isChecked, setIsChecked] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [inputText, setInputText] = React.useState('');
+  const [notFoundError, setNotFoundError] = React.useState(false);
+  const [showApiError, setShowApiError] = React.useState(false);
 
   //Функция для onChange поиска
   const handleSearchChange = (e) => {
@@ -29,7 +31,9 @@ function Movies({ movies, moviesError }) {
     localStorage.setItem('inputVal', JSON.stringify(inputValue));
     localStorage.setItem('checkboxState', JSON.stringify(isCheckedState));
 
+    setNotFoundError(false);
     setIsLoading(true);
+
     //для проверки прелоадера
     setTimeout(() => {
       let newFilteredArray = [];
@@ -59,6 +63,16 @@ function Movies({ movies, moviesError }) {
           'searchedMovies',
           JSON.stringify(newFilteredArray),
         );
+      }
+
+      if (moviesError) {
+        setShowApiError(true);
+      } else if (!moviesError) {
+        setShowApiError(false);
+      }
+
+      if (newFilteredArray.length === 0) {
+        setNotFoundError(true);
       }
 
       setIsLoading(false);
@@ -97,21 +111,17 @@ function Movies({ movies, moviesError }) {
         inputValue={inputText}
       />
 
-      {moviesError && filteredMovies.length === 0 ? (
+      {showApiError ? (
         <p className="movies__error">
           Во время запроса произошла ошибка. Возможно, проблема с соединением
           или сервер недоступен. Подождите немного и попробуйте ещё раз
         </p>
-      ) : (
-        ''
-      )}
-
-      {isLoading ? (
+      ) : isLoading ? (
         <Preloader />
-      ) : filteredMovies.length !== 0 ? (
-        <MoviesCardList movies={filteredMovies} moviesError={moviesError} />
-      ) : (
+      ) : notFoundError ? (
         <p className="movies__not-found">Ничего не найдено 😢</p>
+      ) : (
+        <MoviesCardList movies={filteredMovies} moviesError={moviesError} />
       )}
 
       <div className="movies__button-zone">

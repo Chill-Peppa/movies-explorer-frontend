@@ -12,8 +12,18 @@ function SearchForm({
   handleInputChange,
   inputValue,
 }) {
+  const [inputError, setInputError] = React.useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //чиню ошибку инпута
+    if (inputValue) {
+      setInputError('');
+    } else if (!inputValue) {
+      setInputError('Нужно ввести ключевое слово. ⛔️');
+      return;
+    }
 
     onFilter(inputValue, isChecked);
     console.log('текущее значение инпута:', inputValue);
@@ -21,7 +31,10 @@ function SearchForm({
 
   return (
     <section className="search-form">
-      <form className="search-form__input-zone" onSubmit={handleSubmit}>
+      <form
+        className="search-form__input-zone"
+        onSubmit={handleSubmit}
+        noValidate>
         {/*<p className="search-form__clear" onClick={onDeleteValues}>
           Очистить инпут
   </p>*/}
@@ -38,11 +51,8 @@ function SearchForm({
         />
         <button className="search-form__button" type="submit" />
         <img className="search-form__icon" src={find} alt="Иконка поиска" />
-        <span
-          className={`search-form__span ${
-            inputValue ? '' : 'search-form__span_active'
-          }`}>
-          Нужно ввести ключевое слово. ⛔️
+        <span className={'search-form__span search-form__span_active'}>
+          {inputError}
         </span>
       </form>
       <FilterCheckbox isChecked={isChecked} checkboxChange={checkboxChange} />
