@@ -12,6 +12,8 @@ function Movies({ movies, moviesError }) {
   const [notFoundError, setNotFoundError] = React.useState(false);
   const [showApiError, setShowApiError] = React.useState(false);
 
+  /* ------------ ПОИСК ------------- */
+
   //Функция для onChange поиска
   const handleSearchChange = (e) => {
     e.preventDefault();
@@ -95,11 +97,38 @@ function Movies({ movies, moviesError }) {
     }
   }, [searchedMovies, localCheckbox, localInputVal]);
 
-  /*React.useEffect(() => {
-    console.log(filteredMovies);
-    console.log('локал фильмы', searchedMovies);
-    console.log('localStorage input value', localInputVal);
-  }, [filteredMovies, searchedMovies, localInputVal]);*/
+  /* ------------ ПАГИНАЦИЯ ------------- */
+  const [nextMovies, setNextMovies] = React.useState(0);
+  const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
+
+  //отслеживает текущую ширину экрана
+  const handleResize = React.useCallback(() => {
+    setScreenWidth(window.innerWidth);
+  }, []);
+
+  React.useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [handleResize]);
+
+  //Функция на рендер фильмов
+  const renderMovies = React.useMemo(() => {
+    const paginationCounter =
+      screenWidth < 768 ? 5 : screenWidth < 1280 ? 8 : 12;
+
+    return filteredMovies.slice(0, paginationCounter + nextMovies);
+  }, [nextMovies, screenWidth, filteredMovies]);
+
+  const handleClickButtonMore = () => {
+    if (screenWidth < 1280) {
+      setNextMovies((prev) => prev + 2);
+    } else if (screenWidth >= 1280) {
+      setNextMovies((prev) => prev + 3);
+    }
+  };
 
   return (
     <section className="movies">
@@ -121,11 +150,14 @@ function Movies({ movies, moviesError }) {
       ) : notFoundError ? (
         <p className="movies__not-found">Ничего не найдено 😢</p>
       ) : (
-        <MoviesCardList movies={filteredMovies} moviesError={moviesError} />
+        <MoviesCardList movies={renderMovies} moviesError={moviesError} />
       )}
 
       <div className="movies__button-zone">
-        <button className="movies__button" type="button">
+        <button
+          onClick={handleClickButtonMore}
+          className="movies__button"
+          type="button">
           Ещё
         </button>
       </div>

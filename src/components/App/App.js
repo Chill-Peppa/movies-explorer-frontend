@@ -66,8 +66,6 @@ function App() {
   /* -------------------- АВТОРИЗАЦИЯ И РЕГИСТРАЦИЯ -------------------- */
   //проверяем токен
   React.useEffect(() => {
-    setIsLoading(true);
-
     const jwt = localStorage.getItem('token');
     if (jwt) {
       console.log(jwt);
@@ -75,13 +73,11 @@ function App() {
         .checkToken()
         .then((res) => {
           setLoggedIn(true);
-          setIsLoading(false);
         })
         .catch((err) => {
           console.log(`${err}`);
+          console.log(`код ошибки: ${err.statusError}`);
         });
-    } else {
-      setIsLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -112,7 +108,7 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
-        console.log(`Статус ошибки: ${serverError.statusError}`);
+        console.log(`Статус ошибки: ${err.statusError}`);
         setServerError(err);
       });
   };
@@ -120,6 +116,9 @@ function App() {
   //функция на выход из приложения
   const onSignOut = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('searchedMovies');
+    localStorage.removeItem('inputVal');
+    localStorage.removeItem('checkboxState');
     navigate('/', { replace: true });
     setLoggedIn(false);
   };
