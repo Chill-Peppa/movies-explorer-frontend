@@ -154,12 +154,16 @@ function Movies({ movies, moviesError }) {
       )}
 
       <div className="movies__button-zone">
-        <button
-          onClick={handleClickButtonMore}
-          className="movies__button"
-          type="button">
-          Ещё
-        </button>
+        {filteredMovies.length > renderMovies.length ? (
+          <button
+            onClick={handleClickButtonMore}
+            className="movies__button"
+            type="button">
+            Ещё
+          </button>
+        ) : (
+          ''
+        )}
       </div>
     </section>
   );
