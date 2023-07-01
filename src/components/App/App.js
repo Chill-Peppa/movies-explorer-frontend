@@ -70,7 +70,7 @@ function App() {
   React.useEffect(() => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
-      console.log(jwt);
+      //console.log(jwt);
       auth
         .checkToken()
         .then((res) => {
@@ -124,17 +124,16 @@ function App() {
     setLoggedIn(false);
   };
 
-  /* --------------- ОСТАЛЬНОЕ, ПОКА БЕЗ РАЗДЕЛЕНИЯ --------------- */
+  /* --------------- ПОЛЬЗОВАТЕЛЬ + ПОЛУЧЕНИЕ ВСЕХ КАРТОЧЕК --------------- */
 
   //получаем информацию о пользователе и ВСЕ карточки
   React.useEffect(() => {
     loggedIn &&
       Promise.all([mainApi.getUserInfo(), moviesApi.getAllMovies()])
-        .then(([userData, initialMovies]) => {
+        .then(([userData, initialMovies, savedMoviesArr]) => {
           setCurrentUser(userData);
-          console.log('user array:', userData);
           setMovies(initialMovies);
-          console.log('movies array:', initialMovies);
+          console.log(initialMovies);
           setIsMoviesError(false);
         })
         .catch((err) => {
@@ -160,21 +159,31 @@ function App() {
       });
   };
 
-  //кинуть фильм в избранное
-  const handleSaveMovie = (movie) => {
-    mainApi
-      .saveMovie(movie)
-      .then((newLikedMovie) => {
-        //console.log(newLikedMovie);
-        setFavoriteMovies([...favoriteMovies, newLikedMovie]);
-      })
-      .catch((err) => {
-        console.error(`Ошибка: ${err}`);
-      });
+  /*------------- ДОБАВИТЬ И УДАЛИТЬ ФИЛЬМЫ -------------- */
+
+  const handleToggleLikeMovie = (movie, isLiked, id) => {
+    if (isLiked) {
+      handleRemoveMovie(id);
+    } else {
+      mainApi
+        .saveMovie(movie)
+        .then((newLikedMovie) => {
+          console.log('Na menya clicknyli');
+          //после сохранения фильма сетни его в массив
+          setFavoriteMovies([...favoriteMovies, newLikedMovie]);
+          console.log(favoriteMovies);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
-  //удалить фильм из избранного
-  const handleDislikeMovie = (id) => {
+  React.useEffect(() => {
+    console.log('юзэффект', favoriteMovies);
+  }, [favoriteMovies]);
+
+  const handleRemoveMovie = (id) => {
     mainApi
       .deleteMovie(id)
       .then(() => {
@@ -230,6 +239,8 @@ function App() {
                       element={Movies}
                       loggedIn={loggedIn}
                       movies={movies}
+                      favoriteMovies={favoriteMovies}
+                      onToggleLike={handleToggleLikeMovie}
                       moviesError={isMoviesError}
                     />
                   }
@@ -240,7 +251,8 @@ function App() {
                     <ProtectedRoute
                       element={SavedMovies}
                       loggedIn={loggedIn}
-                      movies={movies}
+                      onRemoveMovie={handleRemoveMovie}
+                      favoriteMovies={favoriteMovies}
                     />
                   }
                 />

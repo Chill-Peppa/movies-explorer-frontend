@@ -9,15 +9,15 @@ export default class MainApi {
   _returnResponse(res) {
     if (res.ok) {
       return res.json();
-    }
-
-    /*return Promise.reject(`Ошибка: ${res.status}`);*/
-    return res.text().then((text) => {
-      return Promise.reject({
-        statusError: res.statusCode,
-        error: JSON.parse(text).message,
+    } else {
+      /*return Promise.reject(`Ошибка: ${res.status}`);*/
+      return res.text().then((text) => {
+        return Promise.reject({
+          statusError: res.statusCode,
+          error: JSON.parse(text).message,
+        });
       });
-    });
+    }
   }
 
   //универсальный метод запроса с проверкой ответа
@@ -61,15 +61,15 @@ export default class MainApi {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: `${BASE_IMG_LINK}${movie.image.url}`,
+        image: BASE_IMG_LINK + movie.image.url,
         trailerLink: movie.trailerLink,
-        thumbnail: `${BASE_IMG_LINK}${movie.image.formats.thumbnail.url}`,
+        thumbnail: BASE_IMG_LINK + movie.image.formats.thumbnail.url,
         movieId: movie.id,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
       }),
       headers: this._headers,
-    }).then(this._returnResponse);
+    });
   }
 
   //удалить из избранного
@@ -77,6 +77,6 @@ export default class MainApi {
     return this._request(`${this._url}/movies/${id}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._returnResponse);
+    });
   }
 }

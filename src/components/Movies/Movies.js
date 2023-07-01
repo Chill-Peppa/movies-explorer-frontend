@@ -4,7 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
-function Movies({ movies, moviesError }) {
+function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isChecked, setIsChecked] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -150,7 +150,12 @@ function Movies({ movies, moviesError }) {
       ) : notFoundError ? (
         <p className="movies__not-found">Ничего не найдено 😢</p>
       ) : (
-        <MoviesCardList movies={renderMovies} moviesError={moviesError} />
+        <MoviesCardList
+          movies={renderMovies}
+          favoriteMovies={favoriteMovies}
+          onToggleLike={onToggleLike}
+          moviesError={moviesError}
+        />
       )}
 
       <div className="movies__button-zone">

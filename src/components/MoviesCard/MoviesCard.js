@@ -5,16 +5,32 @@ import './MoviesCard.css';
 import { timeConverter } from '../../utils/functions/timeConverter';
 import { BASE_IMG_LINK } from '../../utils/constants';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, favoriteMovies, onToggleLike, onRemoveMovie }) {
   const { pathname } = useLocation();
-  const [isLiked, setIsLiked] = React.useState(false);
 
+  //чтобы взять бэкендский айди и прокинуть в функцию удаления
+  const likedMovie = favoriteMovies
+    ? favoriteMovies.find((item) => item.movieId === movie.id)
+    : '';
+
+  // Определяем, есть ли у карточки с фильмом уже лайк
+  const isLiked = favoriteMovies
+    ? favoriteMovies.some((i) => i.movieId === movie.id)
+    : false;
+
+  //Класс для лайка в отдельной переменной
   const cardLikeButtonClassName = `movies-card__icon ${
     isLiked ? 'movies-card__icon_active' : ''
   }`;
 
-  const handleToggleLike = () => {
-    setIsLiked(!isLiked);
+  const handleLikeClick = () => {
+    onToggleLike(movie, isLiked, likedMovie?._id);
+    console.log('на меня кликнули');
+  };
+
+  const handleDeleteClick = () => {
+    onRemoveMovie(movie._id);
+    console.log('на меня кликнули тоже!!!');
   };
 
   return (
@@ -25,7 +41,7 @@ function MoviesCard({ movie }) {
         target="_blank">
         <img
           className="movies-card__img"
-          src={BASE_IMG_LINK + movie.image.url}
+          src={movie.image.url ? BASE_IMG_LINK + movie.image.url : movie.image}
           alt={movie.nameRU}
         />
       </Link>
@@ -34,14 +50,19 @@ function MoviesCard({ movie }) {
 
         {pathname === '/movies' && (
           <button
-            onClick={handleToggleLike}
+            onClick={handleLikeClick}
             type="button"
             className={cardLikeButtonClassName}
             alt="Лайк"
           />
         )}
         {pathname === '/saved-movies' && (
-          <button type="button" className="movies-card__delete" alt="Крестик" />
+          <button
+            onClick={handleDeleteClick}
+            type="button"
+            className="movies-card__delete"
+            alt="Крестик"
+          />
         )}
       </div>
       <span className="movies-card__duration">

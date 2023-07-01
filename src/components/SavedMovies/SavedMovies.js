@@ -3,11 +3,11 @@ import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies({ movies }) {
+function SavedMovies({ movies, favoriteMovies, onRemoveMovie }) {
   return (
     <section className="saved-movies">
       <SearchForm />
-      <MoviesCardList movies={movies} />
+      <MoviesCardList movies={favoriteMovies} onRemoveMovie={onRemoveMovie} />
     </section>
   );
 }
