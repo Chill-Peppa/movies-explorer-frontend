@@ -24,9 +24,9 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   //Функция тоггла чекбокса
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
-    console.log('стейт чекбокса В ФУНКЦИИ после клика', isChecked);
+    console.log('стейт чекбокса В функции после клика', isChecked);
   };
-  console.log('стейт чекбокса вне функции', isChecked);
+  console.log('стейт чекбокса ВНЕ функции', isChecked);
 
   //Функция фильтрации
   const handleFilterMovies = (inputValue, isCheckedState) => {
@@ -88,6 +88,7 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   React.useEffect(() => {
     if (searchedMovies) {
       setFilteredMovies(JSON.parse(searchedMovies));
+      console.log(JSON.parse(searchedMovies));
     }
     if (localCheckbox) {
       setIsChecked(JSON.parse(localCheckbox));

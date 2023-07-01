@@ -130,7 +130,7 @@ function App() {
   React.useEffect(() => {
     loggedIn &&
       Promise.all([mainApi.getUserInfo(), moviesApi.getAllMovies()])
-        .then(([userData, initialMovies, savedMoviesArr]) => {
+        .then(([userData, initialMovies]) => {
           setCurrentUser(userData);
           setMovies(initialMovies);
           console.log(initialMovies);
@@ -139,6 +139,22 @@ function App() {
         .catch((err) => {
           console.error(`Ошибка: ${err}`);
           setIsMoviesError(true);
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn]);
+
+  //Пробую отдельно написать для сохраненных фильмов (потому что в эффекте выше не работает)
+  React.useEffect(() => {
+    loggedIn &&
+      mainApi
+        .getSavedMovies()
+        .then((savedArray) => {
+          console.log('массив сохраненных с бэка:', savedArray);
+          setFavoriteMovies(savedArray);
+          localStorage.setItem('savedMoviesArray', JSON.stringify(savedArray));
+        })
+        .catch((err) => {
+          console.err(`${err}`);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
