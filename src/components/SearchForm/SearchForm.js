@@ -35,9 +35,6 @@ function SearchForm({
         className="search-form__input-zone"
         onSubmit={handleSubmit}
         noValidate>
-        {/*<p className="search-form__clear" onClick={onDeleteValues}>
-          Очистить инпут
-  </p>*/}
         <input
           className="search-form__input"
           name="search"

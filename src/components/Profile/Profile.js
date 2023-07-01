@@ -92,7 +92,8 @@ function Profile({ onSignOut, onUpdateProfile, serverError, isOkRequest }) {
                 className={`profile__error-text ${
                   serverError ? '' : 'profile__error-text_disabled'
                 }`}>
-                {serverError.error}
+                Произошла ошибка на стороне сервера. Пожалуйста, попробуйте
+                позже ещё раз.
               </span>
             )}
 

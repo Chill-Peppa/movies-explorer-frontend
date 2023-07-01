@@ -1,4 +1,4 @@
-import { emailRegexp, nameRegexp } from '../constants';
+import { EMAIL_REGEXP, NAME_REGEXP } from '../constants';
 
 export const validateEmail = (email) => {
   //из-за того, что в самом начале при регистрации значение
@@ -9,12 +9,12 @@ export const validateEmail = (email) => {
         error: 'Это поле обязательное для заполнения! ⛔️',
         activeButton: false,
       };
-    } else if (emailRegexp.test(email.toLowerCase())) {
+    } else if (EMAIL_REGEXP.test(email.toLowerCase())) {
       return {
         error: '',
         activeButton: true,
       };
-    } else if (!emailRegexp.test(email.toLowerCase())) {
+    } else if (!EMAIL_REGEXP.test(email.toLowerCase())) {
       return {
         error: 'Неверный формат почты! Попробуйте ещё раз. ⛔️',
         activeButton: false,
@@ -35,12 +35,12 @@ export const validateName = (name) => {
         error: 'Это поле обязательное для заполнения! ⛔️',
         activeButton: false,
       };
-    } else if (nameRegexp.test(name.toLowerCase())) {
+    } else if (NAME_REGEXP.test(name.toLowerCase())) {
       return {
         error: '',
         activeButton: true,
       };
-    } else if (!nameRegexp.test(name.toLowerCase())) {
+    } else if (!NAME_REGEXP.test(name.toLowerCase())) {
       return {
         error:
           'Имя может содержать только латиницу, кириллицу, пробел и дефис. ⛔️',

@@ -40,6 +40,8 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   //стейт для ошибки в мувис
   const [isMoviesError, setIsMoviesError] = React.useState(false);
+  //для хранения фильмов в избранном
+  const [favoriteMovies, setFavoriteMovies] = React.useState([]);
 
   /* -------------------- API ------------------- */
   const auth = new Auth({
@@ -107,8 +109,7 @@ function App() {
         }
       })
       .catch((err) => {
-        console.error(err);
-        console.log(`Статус ошибки: ${err.statusError}`);
+        console.log(`${err}`);
         setServerError(err);
       });
   };
@@ -124,6 +125,8 @@ function App() {
   };
 
   /* --------------- ОСТАЛЬНОЕ, ПОКА БЕЗ РАЗДЕЛЕНИЯ --------------- */
+
+  //получаем информацию о пользователе и ВСЕ карточки
   React.useEffect(() => {
     loggedIn &&
       Promise.all([mainApi.getUserInfo(), moviesApi.getAllMovies()])
@@ -141,8 +144,8 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
+  //обновление данных
   const handleUpdateUser = (data) => {
-    setIsLoading(true);
     mainApi
       .updateUserInfo(data)
       .then((data) => {
@@ -151,22 +154,36 @@ function App() {
         setIsOkRequest(true);
       })
       .catch((err) => {
-        console.error(`Ошибка: ${err}`);
+        console.error(`${err}`);
         setServerError(err);
         setIsOkRequest(false);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   };
 
-  /*const handleSaveMovie = (movie) => {
-    
-  }
+  //кинуть фильм в избранное
+  const handleSaveMovie = (movie) => {
+    mainApi
+      .saveMovie(movie)
+      .then((newLikedMovie) => {
+        //console.log(newLikedMovie);
+        setFavoriteMovies([...favoriteMovies, newLikedMovie]);
+      })
+      .catch((err) => {
+        console.error(`Ошибка: ${err}`);
+      });
+  };
 
-  const handleDeleteMovie = () => {
-
-  }*/
+  //удалить фильм из избранного
+  const handleDislikeMovie = (id) => {
+    mainApi
+      .deleteMovie(id)
+      .then(() => {
+        setFavoriteMovies(favoriteMovies.filter((m) => m._id !== id));
+      })
+      .catch((err) => {
+        console.error(`Ошибка: ${err}`);
+      });
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

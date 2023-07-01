@@ -1,4 +1,4 @@
-import { baseImgLink } from '../constants';
+import { BASE_IMG_LINK } from '../constants';
 
 export default class MainApi {
   constructor({ url, headers }) {
@@ -11,7 +11,13 @@ export default class MainApi {
       return res.json();
     }
 
-    return Promise.reject(`Ошибка: ${res.status}`);
+    /*return Promise.reject(`Ошибка: ${res.status}`);*/
+    return res.text().then((text) => {
+      return Promise.reject({
+        statusError: res.statusCode,
+        error: JSON.parse(text).message,
+      });
+    });
   }
 
   //универсальный метод запроса с проверкой ответа
@@ -55,9 +61,9 @@ export default class MainApi {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: `${baseImgLink}${movie.image.url}`,
+        image: `${BASE_IMG_LINK}${movie.image.url}`,
         trailerLink: movie.trailerLink,
-        thumbnail: `${baseImgLink}${movie.image.formats.thumbnail.url}`,
+        thumbnail: `${BASE_IMG_LINK}${movie.image.formats.thumbnail.url}`,
         movieId: movie.id,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,

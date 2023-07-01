@@ -43,6 +43,7 @@
   padding: 16px 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (max-width: 450px) {
@@ -79,6 +80,7 @@
   background-color: transparent;
   border: none;
   width: 14px;
+  height: 12px;
 }
 
 @media screen and (max-width: 450px) {
@@ -110,6 +112,13 @@
   background-color: transparent;
   border: none;
   width: 14px;
+  height: 12px;
+  opacity: 1;
+  transition: all 0.5s linear;
+}
+
+.movies-card__delete:hover {
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 450px) {

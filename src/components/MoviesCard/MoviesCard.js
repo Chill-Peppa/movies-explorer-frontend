@@ -3,15 +3,19 @@ import { useLocation, Link } from 'react-router-dom';
 
 import './MoviesCard.css';
 import { timeConverter } from '../../utils/functions/timeConverter';
-import { baseImgLink } from '../../utils/constants';
+import { BASE_IMG_LINK } from '../../utils/constants';
 
 function MoviesCard({ movie }) {
   const { pathname } = useLocation();
   const [isLiked, setIsLiked] = React.useState(false);
-  //подом надо не забыть подставить, это для выбора класса лайка
+
   const cardLikeButtonClassName = `movies-card__icon ${
     isLiked ? 'movies-card__icon_active' : ''
   }`;
+
+  const handleToggleLike = () => {
+    setIsLiked(!isLiked);
+  };
 
   return (
     <li className="movies-card">
@@ -21,7 +25,7 @@ function MoviesCard({ movie }) {
         target="_blank">
         <img
           className="movies-card__img"
-          src={baseImgLink + movie.image.url}
+          src={BASE_IMG_LINK + movie.image.url}
           alt={movie.nameRU}
         />
       </Link>
@@ -29,7 +33,12 @@ function MoviesCard({ movie }) {
         <h2 className="movies-card__header">{movie.nameRU}</h2>
 
         {pathname === '/movies' && (
-          <button type="button" className="movies-card__icon" alt="Лайк" />
+          <button
+            onClick={handleToggleLike}
+            type="button"
+            className={cardLikeButtonClassName}
+            alt="Лайк"
+          />
         )}
         {pathname === '/saved-movies' && (
           <button type="button" className="movies-card__delete" alt="Крестик" />
