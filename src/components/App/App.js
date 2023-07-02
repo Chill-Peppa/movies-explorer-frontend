@@ -161,10 +161,8 @@ function App() {
       mainApi
         .saveMovie(movie)
         .then((newLikedMovie) => {
-          console.log('Na menya clicknyli');
           //после сохранения фильма сетни его в массив
           setFavoriteMovies([...favoriteMovies, newLikedMovie]);
-          console.log(favoriteMovies);
         })
         .catch((err) => {
           console.error(err);

@@ -24,9 +24,7 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   //Функция тоггла чекбокса
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
-    console.log('стейт чекбокса В функции после клика', isChecked);
   };
-  console.log('стейт чекбокса ВНЕ функции', isChecked);
 
   //Функция фильтрации
   const handleFilterMovies = (inputValue, isCheckedState) => {
