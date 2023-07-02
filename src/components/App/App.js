@@ -1,13 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import {
-  Routes,
-  Route,
-  useLocation,
-  Navigate,
-  useNavigate,
-} from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Auth from '../../utils/api/auth';
 import MainApi from '../../utils/api/MainApi';
@@ -29,14 +23,11 @@ function App() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' });
+  const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
-  //стейт ошибок с сервера
   const [serverError, setServerError] = React.useState({});
-  //стейт для проверки корректности запроса в профиле юзера
   const [isOkRequest, setIsOkRequest] = React.useState(false);
-  //стейт для ошибки в мувис
   const [isMoviesError, setIsMoviesError] = React.useState(false);
   const [favoriteMovies, setFavoriteMovies] = React.useState([]);
 
@@ -67,15 +58,14 @@ function App() {
   React.useEffect(() => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
-      console.log(jwt);
       auth
         .checkToken()
         .then((res) => {
           setLoggedIn(true);
+          navigate(pathname);
         })
         .catch((err) => {
           console.log(`${err}`);
-          console.log(`код ошибки: ${err.statusError}`);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -83,7 +73,6 @@ function App() {
 
   //функция на регистрацию
   const onRegister = (values) => {
-    // qwerty qwerty@yandex.ru qwerty
     auth
       .register(values.name, values.email, values.password)
       .then(() => {
@@ -117,6 +106,9 @@ function App() {
     localStorage.removeItem('searchedMovies');
     localStorage.removeItem('inputVal');
     localStorage.removeItem('checkboxState');
+    localStorage.removeItem('searchedMoviesFavorite');
+    localStorage.removeItem('inputValFavorite');
+    localStorage.removeItem('checkboxStateFavorite');
     navigate('/', { replace: true });
     setLoggedIn(false);
   };
@@ -133,9 +125,7 @@ function App() {
         .then(([userData, initialMovies, savedArray]) => {
           setCurrentUser(userData);
           setMovies(initialMovies);
-          console.log('массив ВСЕХ фильмов:', initialMovies);
           setIsMoviesError(false);
-          console.log('массив сохраненных с бэка:', savedArray);
           setFavoriteMovies(savedArray);
           localStorage.setItem('savedMoviesArray', JSON.stringify(savedArray));
         })
@@ -219,10 +209,6 @@ function App() {
     }
   }, [localFavoriteMovies]);
 
-  React.useEffect(() => {
-    console.log('покажи избранные сейчас', favoriteMovies);
-  }, [favoriteMovies]);
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -235,21 +221,26 @@ function App() {
           ) : null}
           <main className="main">
             <Routes>
-              <Route
-                path="/"
-                element={
-                  loggedIn ? <Navigate to="/movies" replace /> : <Main />
-                }
-              />
+              <Route path="/" element={<Main />} />
               <Route
                 path="/signup"
                 element={
-                  <Register onRegister={onRegister} serverError={serverError} />
+                  <Register
+                    onRegister={onRegister}
+                    loggedIn={loggedIn}
+                    serverError={serverError}
+                  />
                 }
               />
               <Route
                 path="/signin"
-                element={<Login onLogin={onLogin} serverError={serverError} />}
+                element={
+                  <Login
+                    onLogin={onLogin}
+                    loggedIn={loggedIn}
+                    serverError={serverError}
+                  />
+                }
               />
               <Route path="*" element={<PageNotFound loggedIn={loggedIn} />} />
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { validateEmail, validateName } from '../../utils/functions/validators';
 
@@ -9,10 +9,18 @@ import logo from '../../images/logo.svg';
 function Register(props) {
   const { values, handleChange, errors, isValid } = useFormAndValidation();
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     props.onRegister(values);
   };
+
+  React.useEffect(() => {
+    if (props.loggedIn) {
+      navigate('/movies');
+    }
+  });
 
   return (
     <section className="sign">

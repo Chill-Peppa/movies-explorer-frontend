@@ -7,19 +7,17 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
   const [isChecked, setIsChecked] = React.useState(false);
   const [inputText, setInputText] = React.useState('');
   const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [notFoundError, setNotFoundError] = React.useState(false);
 
-  //Функция для onChange поиска
   const handleSearchChange = (e) => {
     e.preventDefault();
     setInputText(e.target.value);
   };
 
-  //Функция тоггла чекбокса
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
-  //Функция фильтрации
   const handleFilterMovies = (inputValue, isCheckedState) => {
     localStorage.setItem('inputValFavorite', JSON.stringify(inputValue));
     localStorage.setItem(
@@ -27,7 +25,6 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
       JSON.stringify(isCheckedState),
     );
 
-    //для проверки прелоадера
     let newFilteredArray = [];
 
     if (isCheckedState) {
@@ -55,6 +52,10 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
         'searchedMoviesFavorite',
         JSON.stringify(newFilteredArray),
       );
+    }
+
+    if (newFilteredArray.length === 0) {
+      setNotFoundError(true);
     }
   };
 
@@ -96,7 +97,9 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
       {filteredMovies.length ? (
         <MoviesCardList movies={filteredMovies} onRemoveMovie={onRemoveMovie} />
       ) : (
-        <p className="movies__not-found">Ничего не найдено 😢</p>
+        notFoundError && (
+          <p className="movies__not-found">Ничего не найдено 😢</p>
+        )
       )}
     </section>
   );

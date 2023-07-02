@@ -25,12 +25,10 @@ function MoviesCard({ movie, favoriteMovies, onToggleLike, onRemoveMovie }) {
 
   const handleLikeClick = () => {
     onToggleLike(movie, isLiked, likedMovie?._id);
-    console.log('на меня кликнули');
   };
 
   const handleDeleteClick = () => {
     onRemoveMovie(movie._id);
-    console.log('на меня кликнули тоже!!!');
   };
 
   return (
