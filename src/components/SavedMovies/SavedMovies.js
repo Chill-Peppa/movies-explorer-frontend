@@ -7,7 +7,6 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
   const [isChecked, setIsChecked] = React.useState(false);
   const [inputText, setInputText] = React.useState('');
   const [filteredMovies, setFilteredMovies] = React.useState([]);
-  const [notFoundError, setNotFoundError] = React.useState(false);
 
   //Функция для onChange поиска
   const handleSearchChange = (e) => {
@@ -57,10 +56,6 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
         JSON.stringify(newFilteredArray),
       );
     }
-
-    if (newFilteredArray.length === 0) {
-      setNotFoundError(true);
-    }
   };
 
   const searchedMovies = localStorage.getItem('searchedMoviesFavorite');
@@ -79,6 +74,15 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
     }
   }, [searchedMovies, localCheckbox, localInputVal]);
 
+  //чтобы связать массивы сохраненных и отфильтрованных
+  React.useEffect(() => {
+    if (searchedMovies) {
+      setFilteredMovies(JSON.parse(searchedMovies));
+    } else {
+      setFilteredMovies(favoriteMovies);
+    }
+  }, [searchedMovies, favoriteMovies]);
+
   return (
     <section className="saved-movies">
       <SearchForm
@@ -91,10 +95,8 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
 
       {filteredMovies.length ? (
         <MoviesCardList movies={filteredMovies} onRemoveMovie={onRemoveMovie} />
-      ) : notFoundError ? (
-        <p className="movies__not-found">Ничего не найдено 😢</p>
       ) : (
-        <MoviesCardList movies={favoriteMovies} onRemoveMovie={onRemoveMovie} />
+        <p className="movies__not-found">Ничего не найдено 😢</p>
       )}
     </section>
   );

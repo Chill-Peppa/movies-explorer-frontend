@@ -24,7 +24,6 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import Preloader from '../Preloader/Preloader';
 
 function App() {
   const { pathname } = useLocation();
@@ -37,7 +36,6 @@ function App() {
   const [serverError, setServerError] = React.useState({});
   //стейт для проверки корректности запроса в профиле юзера
   const [isOkRequest, setIsOkRequest] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
   //стейт для ошибки в мувис
   const [isMoviesError, setIsMoviesError] = React.useState(false);
   const [favoriteMovies, setFavoriteMovies] = React.useState([]);
@@ -193,6 +191,23 @@ function App() {
       .catch((err) => {
         console.error(`Ошибка: ${err}`);
       });
+
+    //чтобы корректно удалялась карточка из избранного
+    //отфильтрованного массива
+    const filteredFavoriteMovies = JSON.parse(
+      localStorage.getItem('searchedMoviesFavorite'),
+    );
+
+    if (filteredFavoriteMovies) {
+      const newFilteredFavoriteMoviesArr = filteredFavoriteMovies.filter(
+        (movie) => movie._id !== id,
+      );
+
+      localStorage.setItem(
+        'searchedMoviesFavorite',
+        JSON.stringify(newFilteredFavoriteMoviesArr),
+      );
+    }
   };
 
   /* Тут кусочек кода с сетом массива сохраненных */
@@ -210,88 +225,79 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        <div className="App">
-          <div className="page">
-            {pathname === '/' ||
-            pathname === '/movies' ||
-            pathname === '/saved-movies' ||
-            pathname === '/profile' ? (
-              <Header />
-            ) : null}
-            <main className="main">
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    loggedIn ? <Navigate to="/movies" replace /> : <Main />
-                  }
-                />
-                <Route
-                  path="/signup"
-                  element={
-                    <Register
-                      onRegister={onRegister}
-                      serverError={serverError}
-                    />
-                  }
-                />
-                <Route
-                  path="/signin"
-                  element={
-                    <Login onLogin={onLogin} serverError={serverError} />
-                  }
-                />
-                <Route path="*" element={<PageNotFound />} />
+      <div className="App">
+        <div className="page">
+          {pathname === '/' ||
+          pathname === '/movies' ||
+          pathname === '/saved-movies' ||
+          pathname === '/profile' ? (
+            <Header />
+          ) : null}
+          <main className="main">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  loggedIn ? <Navigate to="/movies" replace /> : <Main />
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <Register onRegister={onRegister} serverError={serverError} />
+                }
+              />
+              <Route
+                path="/signin"
+                element={<Login onLogin={onLogin} serverError={serverError} />}
+              />
+              <Route path="*" element={<PageNotFound loggedIn={loggedIn} />} />
 
-                <Route
-                  path="/movies"
-                  element={
-                    <ProtectedRoute
-                      element={Movies}
-                      loggedIn={loggedIn}
-                      movies={movies}
-                      favoriteMovies={favoriteMovies}
-                      onToggleLike={handleToggleLikeMovie}
-                      moviesError={isMoviesError}
-                    />
-                  }
-                />
-                <Route
-                  path="/saved-movies"
-                  element={
-                    <ProtectedRoute
-                      element={SavedMovies}
-                      loggedIn={loggedIn}
-                      onRemoveMovie={handleRemoveMovie}
-                      favoriteMovies={favoriteMovies}
-                    />
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute
-                      element={Profile}
-                      onSignOut={onSignOut}
-                      onUpdateProfile={handleUpdateUser}
-                      loggedIn={loggedIn}
-                      isOkRequest={isOkRequest}
-                    />
-                  }
-                />
-              </Routes>
-            </main>
-            {pathname === '/' ||
-            pathname === '/movies' ||
-            pathname === '/saved-movies' ? (
-              <Footer />
-            ) : null}
-          </div>
+              <Route
+                path="/movies"
+                element={
+                  <ProtectedRoute
+                    element={Movies}
+                    loggedIn={loggedIn}
+                    movies={movies}
+                    favoriteMovies={favoriteMovies}
+                    onToggleLike={handleToggleLikeMovie}
+                    moviesError={isMoviesError}
+                  />
+                }
+              />
+              <Route
+                path="/saved-movies"
+                element={
+                  <ProtectedRoute
+                    element={SavedMovies}
+                    loggedIn={loggedIn}
+                    onRemoveMovie={handleRemoveMovie}
+                    favoriteMovies={favoriteMovies}
+                  />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute
+                    element={Profile}
+                    onSignOut={onSignOut}
+                    onUpdateProfile={handleUpdateUser}
+                    loggedIn={loggedIn}
+                    isOkRequest={isOkRequest}
+                  />
+                }
+              />
+            </Routes>
+          </main>
+          {pathname === '/' ||
+          pathname === '/movies' ||
+          pathname === '/saved-movies' ? (
+            <Footer />
+          ) : null}
         </div>
-      )}
+      </div>
     </CurrentUserContext.Provider>
   );
 }
