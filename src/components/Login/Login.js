@@ -8,16 +8,6 @@ import logo from '../../images/logo.svg';
 
 function Login(props) {
   const { values, handleChange, errors, isValid } = useFormAndValidation();
-  /*const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
-  };*/
 
   const navigate = useNavigate();
 
@@ -36,7 +26,7 @@ function Login(props) {
     if (props.loggedIn) {
       navigate('/movies');
     }
-  });
+  }, [props.loggedIn, navigate]);
 
   return (
     <section className="sign">

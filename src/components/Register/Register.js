@@ -20,7 +20,7 @@ function Register(props) {
     if (props.loggedIn) {
       navigate('/movies');
     }
-  });
+  }, [props.loggedIn, navigate]);
 
   return (
     <section className="sign">
