@@ -4,9 +4,9 @@
 https://www.figma.com/file/pXuHU2n2821pvQUFC2w1A3/Diploma-(Copy)?type=design&node-id=891-3857&t=V12GxqSJi2WwwhOu-0
 
 ## Ссылки на проект
-Адрес репозитория: https://github.com/Chill-Peppa/movies-explorer-frontend
-Frontend: http://movies-explorer-diploma.nomoredomains.rocks/
-Backend: http://api.movies-explorer-dip.nomoredomains.rocks/
+* Адрес репозитория: https://github.com/Chill-Peppa/movies-explorer-frontend
+* Frontend: http://movies-explorer-diploma.nomoredomains.rocks/
+* Backend: http://api.movies-explorer-dip.nomoredomains.rocks/
 
 ## Запуск проекта
 Проект необходимо скачать. Запуск приложения осуществляется командой: `npm start`
