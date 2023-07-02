@@ -34,12 +34,12 @@ function App() {
   /* -------------------- API ------------------- */
   const auth = new Auth({
     //тут будет ссылка на мой бэк
-    baseUrl: 'http://localhost:3001',
+    baseUrl: 'https://api.movies-explorer-dip.nomoredomains.rocks/',
   });
 
   const mainApi = new MainApi({
     //тут будет ссылка на мой бэк
-    url: 'http://localhost:3001',
+    url: 'https://api.movies-explorer-dip.nomoredomains.rocks/',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem('token')}`,
