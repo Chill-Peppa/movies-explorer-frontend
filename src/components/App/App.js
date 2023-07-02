@@ -217,7 +217,7 @@ function App() {
           pathname === '/movies' ||
           pathname === '/saved-movies' ||
           pathname === '/profile' ? (
-            <Header />
+            <Header loggedIn={loggedIn} />
           ) : null}
           <main className="main">
             <Routes>
