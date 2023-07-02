@@ -88,7 +88,6 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   React.useEffect(() => {
     if (searchedMovies) {
       setFilteredMovies(JSON.parse(searchedMovies));
-      console.log(JSON.parse(searchedMovies));
     }
     if (localCheckbox) {
       setIsChecked(JSON.parse(localCheckbox));

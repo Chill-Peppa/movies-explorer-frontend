@@ -40,7 +40,6 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   //стейт для ошибки в мувис
   const [isMoviesError, setIsMoviesError] = React.useState(false);
-  //для хранения фильмов в избранном
   const [favoriteMovies, setFavoriteMovies] = React.useState([]);
 
   /* -------------------- API ------------------- */
@@ -70,7 +69,7 @@ function App() {
   React.useEffect(() => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
-      //console.log(jwt);
+      console.log(jwt);
       auth
         .checkToken()
         .then((res) => {
@@ -124,37 +123,27 @@ function App() {
     setLoggedIn(false);
   };
 
-  /* --------------- ПОЛЬЗОВАТЕЛЬ + ПОЛУЧЕНИЕ ВСЕХ КАРТОЧЕК --------------- */
+  /* --------------- ПОЛЬЗОВАТЕЛЬ + ПОЛУЧЕНИЕ КАРТОЧЕК --------------- */
 
-  //получаем информацию о пользователе и ВСЕ карточки
   React.useEffect(() => {
     loggedIn &&
-      Promise.all([mainApi.getUserInfo(), moviesApi.getAllMovies()])
-        .then(([userData, initialMovies]) => {
+      Promise.all([
+        mainApi.getUserInfo(),
+        moviesApi.getAllMovies(),
+        mainApi.getSavedMovies(),
+      ])
+        .then(([userData, initialMovies, savedArray]) => {
           setCurrentUser(userData);
           setMovies(initialMovies);
-          console.log(initialMovies);
+          console.log('массив ВСЕХ фильмов:', initialMovies);
           setIsMoviesError(false);
-        })
-        .catch((err) => {
-          console.error(`Ошибка: ${err}`);
-          setIsMoviesError(true);
-        });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
-
-  //Пробую отдельно написать для сохраненных фильмов (потому что в эффекте выше не работает)
-  React.useEffect(() => {
-    loggedIn &&
-      mainApi
-        .getSavedMovies()
-        .then((savedArray) => {
           console.log('массив сохраненных с бэка:', savedArray);
           setFavoriteMovies(savedArray);
           localStorage.setItem('savedMoviesArray', JSON.stringify(savedArray));
         })
         .catch((err) => {
-          console.err(`${err}`);
+          console.error(`Ошибка: ${err}`);
+          setIsMoviesError(true);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
@@ -195,10 +184,6 @@ function App() {
     }
   };
 
-  React.useEffect(() => {
-    console.log('юзэффект', favoriteMovies);
-  }, [favoriteMovies]);
-
   const handleRemoveMovie = (id) => {
     mainApi
       .deleteMovie(id)
@@ -209,6 +194,20 @@ function App() {
         console.error(`Ошибка: ${err}`);
       });
   };
+
+  //если в массиве с избранными фильмами есть что-то - сетни
+  //если массив обновляется - тоже сетай
+  const localFavoriteMovies = localStorage.getItem('savedMoviesArray');
+
+  React.useEffect(() => {
+    if (localFavoriteMovies) {
+      setFavoriteMovies(JSON.parse(localFavoriteMovies));
+    }
+  }, [localFavoriteMovies]);
+
+  React.useEffect(() => {
+    console.log('покажи избранные сейчас', favoriteMovies);
+  }, [favoriteMovies]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
