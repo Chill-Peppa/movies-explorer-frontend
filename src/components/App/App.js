@@ -195,8 +195,7 @@ function App() {
       });
   };
 
-  //если в массиве с избранными фильмами есть что-то - сетни
-  //если массив обновляется - тоже сетай
+  /* Тут кусочек кода с сетом массива сохраненных */
   const localFavoriteMovies = localStorage.getItem('savedMoviesArray');
 
   React.useEffect(() => {
