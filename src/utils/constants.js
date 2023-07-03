@@ -3,6 +3,7 @@ export const EMAIL_REGEXP =
 /*/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;*/
 export const NAME_REGEXP = /^[a-zA-Zа-яА-Я\sё-]+$/;
 export const BASE_IMG_LINK = 'https://api.nomoreparties.co';
+
 export const SHORT_MOVIE_DURATION = 40;
 export const MIN_ADDED_CARDS = 2;
 export const MAX_ADDED_CARDS = 3;
