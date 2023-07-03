@@ -1,6 +1,6 @@
 # Фронтенд дипломного проекта от Я.Практикум
 
-## Ссылка на макет(через сайт фигма) 
+## Ссылка на макет
 https://www.figma.com/file/pXuHU2n2821pvQUFC2w1A3/Diploma-(Copy)?type=design&node-id=891-3857&t=V12GxqSJi2WwwhOu-0
 
 ## Ссылки на проект
