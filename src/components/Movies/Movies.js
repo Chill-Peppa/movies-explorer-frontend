@@ -3,6 +3,16 @@ import '../Movies/Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
+import {
+  SHORT_MOVIE_DURATION,
+  MIN_ADDED_CARDS,
+  MAX_ADDED_CARDS,
+  SHOWED_CARDS_MIN,
+  SHOWED_CARDS_MEDIUM,
+  SHOWED_CARDS_MAX,
+  WINDOW_WIDTH_MAX,
+  WINDOW_WIDTH_MEDIUM,
+} from '../../utils/constants';
 
 function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
@@ -23,8 +33,13 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
 
   //Функция тоггла чекбокса
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    if (inputText !== '') {
+      setIsChecked(!isChecked);
+      console.log('в функции', isChecked);
+      handleFilterMovies(inputText, !isChecked);
+    }
   };
+  console.log('вне', isChecked);
 
   //Функция фильтрации
   const handleFilterMovies = (inputValue, isCheckedState) => {
@@ -41,9 +56,9 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
       if (isCheckedState) {
         newFilteredArray = movies.filter((movie) => {
           return (
-            (movie.nameRU.toLowerCase().includes(inputValue) ||
-              movie.nameEN.toLowerCase().includes(inputValue)) &&
-            movie.duration <= 40
+            (movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
+              movie.nameEN.toLowerCase().includes(inputValue.toLowerCase())) &&
+            movie.duration <= SHORT_MOVIE_DURATION
           );
         });
         setFilteredMovies(newFilteredArray);
@@ -54,8 +69,8 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
       } else if (!isCheckedState) {
         newFilteredArray = movies.filter((movie) => {
           return (
-            movie.nameRU.toLowerCase().includes(inputValue) ||
-            movie.nameEN.toLowerCase().includes(inputValue)
+            movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
+            movie.nameEN.toLowerCase().includes(inputValue.toLowerCase())
           );
         });
         setFilteredMovies(newFilteredArray);
@@ -115,16 +130,20 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   //Функция на рендер фильмов
   const renderMovies = React.useMemo(() => {
     const paginationCounter =
-      screenWidth < 768 ? 5 : screenWidth < 1280 ? 8 : 12;
+      screenWidth < WINDOW_WIDTH_MEDIUM
+        ? SHOWED_CARDS_MIN
+        : screenWidth < WINDOW_WIDTH_MAX
+        ? SHOWED_CARDS_MEDIUM
+        : SHOWED_CARDS_MAX;
 
     return filteredMovies.slice(0, paginationCounter + nextMovies);
   }, [nextMovies, screenWidth, filteredMovies]);
 
   const handleClickButtonMore = () => {
-    if (screenWidth < 1280) {
-      setNextMovies((prev) => prev + 2);
-    } else if (screenWidth >= 1280) {
-      setNextMovies((prev) => prev + 3);
+    if (screenWidth < WINDOW_WIDTH_MAX) {
+      setNextMovies((prev) => prev + MIN_ADDED_CARDS);
+    } else if (screenWidth >= WINDOW_WIDTH_MAX) {
+      setNextMovies((prev) => prev + MAX_ADDED_CARDS);
     }
   };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { SHORT_MOVIE_DURATION } from '../../utils/constants';
 
 function SavedMovies({ favoriteMovies, onRemoveMovie }) {
   const [isChecked, setIsChecked] = React.useState(false);
@@ -30,9 +31,9 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
     if (isCheckedState) {
       newFilteredArray = favoriteMovies.filter((movie) => {
         return (
-          (movie.nameRU.toLowerCase().includes(inputValue) ||
-            movie.nameEN.toLowerCase().includes(inputValue)) &&
-          movie.duration <= 40
+          (movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
+            movie.nameEN.toLowerCase().includes(inputValue.toLowerCase())) &&
+          movie.duration <= SHORT_MOVIE_DURATION
         );
       });
       setFilteredMovies(newFilteredArray);
@@ -43,8 +44,8 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
     } else if (!isCheckedState) {
       newFilteredArray = favoriteMovies.filter((movie) => {
         return (
-          movie.nameRU.toLowerCase().includes(inputValue) ||
-          movie.nameEN.toLowerCase().includes(inputValue)
+          movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(inputValue.toLowerCase())
         );
       });
       setFilteredMovies(newFilteredArray);

@@ -25,7 +25,9 @@ function Register(props) {
   return (
     <section className="sign">
       <div className="sign__zone">
-        <img className="sign__logo" alt="Лого" src={logo} />
+        <Link to="/" className="sign__header-link">
+          <img className="sign__logo" alt="Лого" src={logo} />
+        </Link>
         <h2 className="sign__header">Добро пожаловать!</h2>
         <form className="sign__form" onSubmit={handleSubmit} noValidate>
           <label htmlFor="name" className="sign__input-header">
