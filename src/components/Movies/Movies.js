@@ -35,11 +35,9 @@ function Movies({ movies, moviesError, favoriteMovies, onToggleLike }) {
   const handleCheckboxChange = () => {
     if (inputText !== '') {
       setIsChecked(!isChecked);
-      console.log('в функции', isChecked);
       handleFilterMovies(inputText, !isChecked);
     }
   };
-  console.log('вне', isChecked);
 
   //Функция фильтрации
   const handleFilterMovies = (inputValue, isCheckedState) => {

@@ -16,7 +16,10 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
   };
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    if (inputText !== '') {
+      setIsChecked(!isChecked);
+      handleFilterMovies(inputText, !isChecked);
+    }
   };
 
   const handleFilterMovies = (inputValue, isCheckedState) => {
@@ -73,7 +76,9 @@ function SavedMovies({ favoriteMovies, onRemoveMovie }) {
     }
     if (localInputVal) {
       setInputText(JSON.parse(localInputVal));
+      handleFilterMovies(JSON.parse(localInputVal), JSON.parse(localCheckbox));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchedMovies, localCheckbox, localInputVal]);
 
   //чтобы связать массивы сохраненных и отфильтрованных
