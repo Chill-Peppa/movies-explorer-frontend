@@ -103,10 +103,33 @@
   font-size: 10px;
   line-height: 12px;
   color: #ee3465;
-  margin: 6px 0 4px 0;
+  margin: 6px 0 7px 0;
   display: block;
   max-width: 396px;
-  /*  opacity: 0;*/
+  height: 12px;
+  opacity: 0;
+}
+
+.sign__input-error_active {
+  opacity: 1;
+}
+
+.sign__api-error {
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 12px;
+  height: 13px;
+  line-height: 13px;
+  padding: 0;
+  display: block;
+  width: 100%;
+  margin-top: 97px;
+  text-align: center;
+  opacity: 1;
+}
+
+.sign__api-error_disabled {
+  opacity: 0;
 }
 
 .sign__button {
@@ -114,7 +137,7 @@
   width: 100%;
   /*padding: 15px 0 15px 0;*/
   height: 45px;
-  margin: 130px 0 16px 0;
+  margin: 20px 0 16px 0; /*130px*/
   cursor: pointer;
   background-color: #4285f4;
   border-radius: 3px;
@@ -133,21 +156,30 @@
   opacity: 0.8;
 }
 
+.sign__button_disabled {
+  cursor: not-allowed;
+  background: #f8f8f8;
+  color: #c2c2c2;
+  border-radius: 3px;
+  border: none;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 451px) {
   .sign__button {
     max-width: 260px;
     width: 100%;
-    margin: 215px 0 16px 0;
+    margin: 20px 0 16px 0; /*215px*/
   }
 }
 
 .sign__button_login {
-  margin: 201px 0 16px 0;
+  margin: 20px 0 16px 0;
 }
 
 @media screen and (max-width: 451px) {
   .sign__button_login {
-    margin: 286px 0 15px 0;
+    margin: 20px 0 15px 0;
   }
 }
 
@@ -159,6 +191,7 @@
   font-size: 14px;
   line-height: 17px;
   text-align: center;
+  text-decoration: none;
   color: #8b8b8b;
 }
 
@@ -171,6 +204,7 @@
 
 .sign__enter {
   color: #4285f4;
+  text-decoration: none;
   cursor: pointer;
   opacity: 1;
   transition: all 0.4s ease-in-out;

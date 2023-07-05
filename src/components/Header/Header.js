@@ -5,7 +5,7 @@ import Navigation from '../Navigation/Navigation';
 
 import { useLocation, Link } from 'react-router-dom';
 
-function Header() {
+function Header({ loggedIn }) {
   const { pathname } = useLocation();
 
   return (
@@ -22,7 +22,9 @@ function Header() {
           src={logo}
         />
       </Link>
-      {pathname === '/' ? (
+      {loggedIn && pathname === '/' ? (
+        <Navigation />
+      ) : pathname === '/' ? (
         <nav className="header__btns">
           <Link to="/signup" className="header__button-left">
             Регистрация

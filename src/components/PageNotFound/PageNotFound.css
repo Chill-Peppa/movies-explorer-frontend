@@ -31,6 +31,7 @@
 
 .not-found__error {
   margin-top: 39px;
+  margin-bottom: 184px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -46,7 +47,9 @@
 }
 
 .not-found__back {
-  margin: 184px 0 60px 0;
+  border: none;
+  background-color: transparent;
+  margin: 0 auto;
   color: #4285f4;
   font-family: 'Inter';
   font-style: normal;
@@ -56,6 +59,7 @@
   cursor: pointer;
   opacity: 1;
   transition: all 0.4s ease-in-out;
+  width: 50px;
 }
 
 .not-found__back:hover {
